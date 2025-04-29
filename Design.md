@@ -32,11 +32,10 @@ Key success criteria:
 |-----------|---------------|---------------|
 |**Tracker**|Maintains the set of active peer addresses; relays incremental updates.|`tracker.py`, 0 persistent state.|
 |**Peer Node**|Holds full chain, validates blocks/txs, mines, relays messages.|`node/` package, one process per VM.|
-|**CLI Wallet**|Signs VoteTx and broadcasts to local peer via HTTP API.|`wallet.py`.|
+|**Voter**|Signs VoteTx and broadcasts to peers via HTTP API. Needs a valid key to sign votes, and can only sign once.|`voter.py`.|
 |**Web UI**|Single‑page React app served from each node: cast vote, view live tally, block explorer.|`ui/` directory.|
 |**Test Harness**|Automates failure injection and log capture for TESTING.md.|`tests/`|
 
-![](docs/architecture.png) <!-- logical diagram placeholder; generated in README instructions -->
 
 ---
 
@@ -167,4 +166,4 @@ Inclusion of the control node can be used
 ## 11  Extra‑Credit Features
 * **Dynamic difficulty** implemented in §5.
 * **Merkle proofs** enable light clients (extra credit).
-* **Graphical dashboard** both for voting and for tracking live tallys 
+* **Graphical dashboard** both for voting and for tracking live tallys  (React)
