@@ -10,6 +10,7 @@ DEFAULT_DIFFICULTY = 16
 INIT = 0
 VOTE = 1
 BLOCK = 2
+MAX_BLOCK_SIZE = 1024 * 1024
 TARGET = 2**32
 
 #TODO: Add the orphan pool, transactions list, and chain verification
@@ -61,6 +62,7 @@ class Block:
         self.data = data
         self.hash = hashy
         self.difficulty = difficulty
+        
 
 
 class ThisNode():
@@ -72,14 +74,61 @@ class ThisNode():
         self.server.settimeout(0.5)
         self.node_list_lock = threading.Lock()
         self.chain_headers = []
-        self.transactions_in_block = []
+        self.votes = []
+        self.new_elections = []
+        self.active_elections = []
         self.orphan_blocks = []
         if tracker_ip and tracker_port:
             self.start_connection(tracker_ip, tracker_port)
             
         
 
+    def mining(self, block):
+        """
+        Mines a block.
+        """
+        max_header = None
+        max_work = 0
+        for head in self.chain_headers:
+            if head.total_work > max_work:
+                max_work = head.total_work
+                max_header = head
         
+
+        index = 0
+        prev_hash = b'\x00' * 32
+        objects = self.get_objects()
+        merkle_root = self.get_merkle_root(objects)
+        if max_header is not None:
+            prev_hash = max_header.hash # case where this is the first block in the chain
+            index = max_header.index + 1
+        difficulty = self.getDifficulty(max_header).to_bytes(4, byteorder='big')
+        timestamp = int(time.time()-10).to_bytes(8, byteorder='big')
+        nonce = 0
+        while True:
+            while nonce < 2**32:
+                block_header = b''.join([index.to_bytes(4, byteorder='big'), prev_hash, merkle_root, timestamp, difficulty, nonce.to_bytes(4, byteorder='big')])
+                header_hash = hashy(block_header)
+                if check_proof_of_work(header_hash, difficulty):
+                    #TODO: logic for finding a valid block
+                    pass
+            timestamp = min(time.time(), timestamp + 1)
+        
+
+    def get_objects(self):
+        """
+        Gets the objects to be included in the block.
+        """
+        total_size = 0
+        while total_size < MAX_BLOCK_SIZE:
+            pass
+            
+                
+
+
+            
+        
+
     def start_connection(self, ip, port):
         try:
             self.server.connect((ip, port))

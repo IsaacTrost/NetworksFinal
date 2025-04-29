@@ -1,6 +1,6 @@
 import utils
 import argparse
-MAX_CONNECTIONS = int(sys.argv[1]) if len(sys.argv) > 1 else 50= 50
+MAX_CONNECTIONS = 50
 
 
 class Peer(utils.ThisNode):
@@ -113,16 +113,24 @@ class Peer(utils.ThisNode):
 
 if __name__ == "__main__":
     # get user input to get the IP and port of the tracker, and the name of this peer
-    parser = argparse.ArgumentParser(description="Start a peer node.")
-    parser.add_argument("--tracker-ip", type=str, required=True, help="IP address of the tracker")
-    parser.add_argument("--tracker-port", type=int, required=True, help="Port of the tracker")
-    parser.add_argument("--peer-name", type=str, required=True, help="Name of this peer")
+    parser = argparse.ArgumentParser(
+        description="Start a peer node.",
+        usage="peer.py <tracker-ip> <tracker-port> <peer-name>"
+    )
+    parser.add_argument("tracker_ip", type=str, help="IP address of the tracker")
+    parser.add_argument("tracker_port", type=int, help="Port of the tracker")
+    parser.add_argument("peer_name", type=str, help="Name of this peer")
+    
+    if len(vars(parser.parse_args())) == 0:
+        parser.print_help()
+        exit(1)
+    
     args = parser.parse_args()
 
     tracker_ip = args.tracker_ip
     tracker_port = args.tracker_port
     peer_name = args.peer_name
     # Example usage
-    tracker = Peer(peer_name)
+    tracker = Peer(peer_name, tracker_ip, tracker_port)
     # Add nodes, handle messages, etc.
     pass
