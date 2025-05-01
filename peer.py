@@ -105,7 +105,7 @@ class Peer(utils.ThisNode):
             pass
 
         self.chain_headers.append(block)
-        self.broadcast(node, message)
+        self.broadcast(node, BLOCK,  message)
 
         if header_hash in self.orphan_blocks:
             for orphan in self.orphan_blocks[header_hash]:
