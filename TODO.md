@@ -1,0 +1,3 @@
+- Handle a new block, check all the signitures for all of the votes, and that the corosponding elections are still going on.
+- Handle when you mine a block
+- Set up endpoints for getting the full longest path, as well as specific blocks.
