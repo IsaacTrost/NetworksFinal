@@ -1,11 +1,20 @@
 from utils import *
 from election import Election
 from vote import Vote
+import json
+
 class Block:
     """
     Simple class to represent a block in the blockchain.
     """
     def __init__(self, index, hashy, previous_hash, merkle_root, timestamp, difficulty, nonce, parent = None, data = []):
+        assert isinstance(index, int), "Index must be an integer"
+        assert isinstance(previous_hash, bytes), "Previous hash must be bytes"
+        assert isinstance(merkle_root, bytes), "Merkle root must be bytes"
+        assert isinstance(timestamp, int), "Timestamp must be int"
+        assert isinstance(difficulty, int), "Difficulty must be an integer"
+        assert isinstance(nonce, int), "Nonce must be an integer"
+
         self.previous_block = parent
         self.total_work = difficulty
         if(parent is not None):
@@ -15,8 +24,10 @@ class Block:
         self.timestamp = timestamp
         self.elections = {}
         self.votes = {}
+        self.election_ends = {}
         self.merkle_root = merkle_root
         self.nonce = nonce
+        
         for item in data:
             if type(item) == Vote:
                 if item.election_name not in self.votes:
@@ -39,7 +50,6 @@ class Block:
             self.timestamp.to_bytes(8, byteorder='big'),
             self.difficulty.to_bytes(4, byteorder='big'),
             self.nonce.to_bytes(4, byteorder='big'),
-            self.hash
         ]) 
     
     def get_sendable(self):
@@ -47,13 +57,18 @@ class Block:
         Returns the block in a format that can be sent over the network.
         """
         # Creating the header
-        header =  self.get_header() 
+        header = self.get_header() 
         # Creating the body (transactions in the block)
         body = b''
         for election in self.elections:
             body += self.elections[election].jsonify().encode('utf-8')
+        count = 0
         for vote in self.votes:
-            body += self.votes[vote].jsonify().encode('utf-8')
+            body += json.dumps({
+            "index": count,
+            "data": self.votes[vote].jsonify()
+            }).encode('utf-8')
+            count += 1
         return header + body
     
     def get_election_peices(self, name):
@@ -213,4 +228,13 @@ class Block:
                 nodes.append(nodes[-1])
         
         return proof
+    
+    def jsonify_data(self):
+        """
+        Converts the block data to JSON format.
+        """
+        return json.dumps({
+            "elections" : [election.jsonify() for election in self.elections.values()],
+            "votes" : [vote.jsonify() for vote in self.votes.values()]
+        })
     

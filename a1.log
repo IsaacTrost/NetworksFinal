@@ -1,0 +1,38 @@
+1746385879.4067912: a1 initialized
+1234567890.
+
+a1 initialized.
+1746385880.939588: Connection accepted: <socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 44756)>
+
+1746385880.9401226: Initial message from node: b'\x00\x04\x00\x01\x13\x8a'
+
+1746385880.9404695: Connection verified: <socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 44756)>
+
+1746385880.9406722: Message sent to node <node.Node object at 0x7f5ebf31afe0>: b'[]'
+
+1746385880.9428327: Node added: <node.Node object at 0x7f5ebf31afe0>
+
+1746385880.94293: Message from node: b'\x00\x06\x00\x06\x00\x00\x00\x00'
+
+1746385880.9429975: Get longest chain message received: b'\x00\x06\x00\x00\x00\x00'
+
+1746385880.94307: Message sent to node <node.Node object at 0x7f5ebf31afe0>: b'\x00\x05'
+
+1746385880.9431038: Longest chain sent to node <node.Node object at 0x7f5ebf31afe0>: b''
+
+1746385882.4104342: Starting mining process...
+
+1746385882.4109836: Mining process started.
+
+1746385884.8704236: Message from node: b'\x05\x04\x00\x04{"name": "test_election", "choices": ["A", "B", "C"], "public_keys": ["MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApU6wansevQ8HxyevdhvxRY1ZNoWJ2XSZbTldw4tjiKdC5Jcy6r4dp09btFz1d+NWb6xHWJAotbbzc/++3v/SlWpDFucf79W4kldwtUb+3rwgHQSL+20JTPG8m8gH+s20isUc6p7l7pm/xxusv4gRJqjlLS4X+l6QPSeBuFeuIe+P3eUDQyrFIz6+eYJD3jy3skeHD511u65vkhblySjpRjGmeSXUrt+d5XsAfXJdAdmQOISoICZ7eAnTvqiaoi4wBzVVfjXCGox4t5gGRLHXduIbcO6/Bq/RErOxPjvgXE06NJZs+sPBETL+XaXfaLb4puXb9qpjJzGlGfYDus1ItwIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6MqnZoRZ173FwYLDytulqptXxT+1yXiAv8KCpWfTTHfvc7s6j70REt65NJPS1Ip/N/y7TiZSzsB1CLTzdM5YGFstoiJVIU0lNedq/OyIRDHI91kBFOddloriVE5A4vj93vp7mVNAnojQ/1w0VaH6jxGa/RmOvDJDGPoY7KvN9f8YeCOsVYik9MvP71Y8hVVbm/nZR/3PBolL94CvHeu0I0gLPeQO5pvvzCo16sqqsGNj6jB8VeVGi5ZG3MSUMP5i55zroAJkWxavSzIeTPLxCnOOzH8l5Dlk6gFwsPZ37lNQa3duBU6ZVZ+2pjukT3uUZHNGHiwsHpbm+YClKTe8ZQIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5MP91MFn14pf5z8DkMaximM35tN13GEt2VPIIiiqXbIntAcD7TjfWDTdzWtA1Mn7CHDwoi6hYyiLsT4E5TLdLbcAC8lFYdot5I559mTGUxfMUxlV4YE9WrHXVFDXZMaODJJrmdg0VJmTB2SxdMjQGjeD2UpPKQul+sjUAPu5QxBirebuwNF3Fu28K4TaPThO+aQIHzTowBmuVNGnUl0A2nt5hUvRuL3RdL8TOGF+B4gOgl4tnOe9z77pdvql5k4mpSJlGCQUycg59rMX9g9yycgz1ubSMpAZdc8vWS1G2hEf6ASuqnTrjpIuGPG+LlsvobgEu19YkXu/vQbOJFCv3QIDAQAB"], "end_time": 1746389484}'
+
+1746385884.8813012: Election added: test_election
+
+1746385886.8870237: Message from node: b'\x03U\x00\x02{"election_hash": "dbZHBMg2vFF6AirgPlz8geoBn4furvYjbNzpFab8Ms8=", "choice": "A", "public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApU6wansevQ8HxyevdhvxRY1ZNoWJ2XSZbTldw4tjiKdC5Jcy6r4dp09btFz1d+NWb6xHWJAotbbzc/++3v/SlWpDFucf79W4kldwtUb+3rwgHQSL+20JTPG8m8gH+s20isUc6p7l7pm/xxusv4gRJqjlLS4X+l6QPSeBuFeuIe+P3eUDQyrFIz6+eYJD3jy3skeHD511u65vkhblySjpRjGmeSXUrt+d5XsAfXJdAdmQOISoICZ7eAnTvqiaoi4wBzVVfjXCGox4t5gGRLHXduIbcO6/Bq/RErOxPjvgXE06NJZs+sPBETL+XaXfaLb4puXb9qpjJzGlGfYDus1ItwIDAQAB", "signature": "ALoUJfQ6ZUSG4EAMsbEurXWHyscleNwBwFvKqgiK4X8ZHy5UVo3Ukd+QUYW5SWBEBe91BAhoTI8GbuXh3MdLsXWrxw0HbXicr+Xt/32DMSElGx3xzMHV942NSrFCz5drimX/+tWW+kDU++dbj9+kNjJGCyt6H+Z8YaxgoZ4pBB5/1WzTW5hd8RVUPNJf0Rs0j8WSARmtYJSEX8z/+xGT7wwmEGy0SVFGXlQWMUaDYL/3iee67xGKQC1dtL3RVdzXYeJ2tJdXWNntWs+DOjDrUr0eDnI9gThYPdMsaGLqa1JajMKUq3twzGkDmk2A3VaMMAizg01YqOImlWzJ0gwTxA=="}\x03U\x00\x02{"election_hash": "dbZHBMg2vFF6AirgPlz8geoBn4furvYjbNzpFab8Ms8=", "choice": "A", "public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6MqnZoRZ173FwYLDytulqptXxT+1yXiAv8KCpWfTTHfvc7s6j70REt65NJPS1Ip/N/y7TiZSzsB1CLTzdM5YGFstoiJVIU0lNedq/OyIRDHI91kBFOddloriVE5A4vj93vp7mVNAnojQ/1w0VaH6jxGa/RmOvDJDGPoY7KvN9f8YeCOsVYik9MvP71Y8hVVbm/nZR/3PBolL94CvHeu0I0gLPeQO5pvvzCo16sqqsGNj6jB8VeVGi5ZG3MSUMP5i55zroAJkWxavSzIeTPLxCnOOzH8l5Dlk6gFwsPZ37lNQa3duBU6ZVZ+2pjukT3uUZHNGHiwsHpbm+YClKTe8ZQIDAQAB", "signature": "ah2eH2qhzJ/ShADrUWQzApjV4shaVciY5Pnh/WwEoYXe5oqzpiampio7P0lyb9fOwKGW/hdmGAyvV4+XfDrT4AbLNy1vOrfvhg9BCkiNrDpwsxFhETJDgBzYCkfKNQZ1upd72tRT/xONBnWCSmfGnGKewYG+LygLnkL7oicZfnJWhSTdjMNdmWoB/qF0cV3zUarUIbbv1h1AhHr/U7JKt7ONWNQMkiBvPggzQQeiWmW+KeY9Cn/7hhVMroOEU1Vf9ALxS1qkugJX4vi4ENExBYnrB/6/AEQafde14zaB6lm3/m1e+BmEK4iY4v2NxbSkFfjRKUXYiPba0eNKESQlZw=="}'
+
+1746385886.904624: Vote message received: <vote.Vote object at 0x7f5ebf31bbb0>
+
+1746385890.3698957: Vote message received: <vote.Vote object at 0x7f5ebf31bb80>
+
+1746385903.852278: Chain extended: <block.Block object at 0x7f5ebd5a6ec0>
+

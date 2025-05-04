@@ -1,0 +1,46 @@
+1746348116.3679028: one initialized
+1234567890.
+
+one initialized.
+1746348116.452679: Initial node list received from tracker: []
+
+1746348116.4530652: Starting mining process...
+
+1746348116.4536572: Mining process started.
+
+1746348160.9987934: one initialized
+1234567890.
+
+one initialized.
+1746348161.105317: Initial node list received from tracker: []
+
+1746348161.1059883: Starting mining process...
+
+1746348161.1105626: Mining process started.
+
+1746348180.3397093: Initial message from node: b'\x00\x03\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x17(t\x00\x01\x00\x00\x00\xb5=\xf8'
+
+1746348180.3506815: Connection failed: <socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53832), raddr=('127.0.0.1', 5000)>
+
+1746348300.8362346: one initialized
+1234567890.
+
+one initialized.
+1746348300.9121702: Initial node list received from tracker: []
+
+1746348300.9127223: Starting mining process...
+
+1746348300.9130437: Mining process started.
+
+1746348573.9301095: one initialized
+1234567890.
+
+one initialized.
+1746348573.9323747: Node added: <node.Node object at 0x7f3c0cc26cb0>
+
+1746348573.9861333: Node list received: []
+
+1746348573.988937: Starting mining process...
+
+1746348573.9954877: Mining process started.
+

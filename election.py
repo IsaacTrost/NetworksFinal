@@ -27,6 +27,7 @@ class Election:
         self.end_time = end_time
         self.new = True
         self.hashy = hashy(self.jsonify().encode('utf-8'))
+        self.len = len(self.jsonify())
 
     
     def jsonify(self):
