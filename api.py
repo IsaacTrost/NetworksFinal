@@ -3,7 +3,7 @@ from flask_cors import CORS
 from light_node import LightNode
 import time
 
-# CONFIGURE THESE TO MATCH YOUR TRACKER SETUP
+# Need changes to match tracker set up 
 TRACKER_IP = "127.0.0.1"
 TRACKER_PORT = 8000
 NODE_NAME = "WebNode"
