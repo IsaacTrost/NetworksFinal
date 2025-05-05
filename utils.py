@@ -11,7 +11,7 @@ from cryptography.exceptions import InvalidSignature
 import base64
 
 MAX_CONNECTIONS = 50
-DEFAULT_DIFFICULTY = 8 
+DEFAULT_DIFFICULTY = 128 
 INIT = 1
 VOTE = 2
 BLOCK = 3

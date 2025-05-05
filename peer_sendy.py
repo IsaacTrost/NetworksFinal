@@ -52,15 +52,10 @@ def create_vote(election, voter_index, choice):
     
     private_key = private_keys[voter_index]
     public_key_b64 = public_keys_b64[voter_index]
-    print("CURVE:", public_key_b64)
     
     # Sign the message
     signature_b64 = Vote.sign(private_key, election.hashy, choice)
     election_hash = base64.b64encode(election.hashy).decode('utf-8')
-    print(type(signature_b64))
-    print(type(election_hash))
-    print(type(public_key_b64))
-    print(type(choice))
     vote_data = {
         "election_hash": election_hash,
         "choice": choice,

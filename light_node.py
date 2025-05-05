@@ -53,7 +53,7 @@ class LightNode(Peer):
                 prev_hash = block_header[4:36]
                 parent = None
                 if prev_hash not in self.blocks and index != 0:
-                    self.write_log(f"Block {index} not in chain, exiting")
+                    self.write_log(f"X Block {index} not in chain, exiting")
                     return
                 if index != 0:
                     parent = self.blocks[prev_hash]
@@ -67,7 +67,7 @@ class LightNode(Peer):
         This should keep the p2p network running, but does not require us to do any work (since this node wont mine, it does not matter)
         """
         self.broadcast(node, VOTE, message)
-        self.write_log("Vote received, broadcasting") 
+        self.write_log("INF: Vote received, broadcasting") 
 
     def handle_election(self, message, node):
         """
@@ -77,7 +77,7 @@ class LightNode(Peer):
         """
         print(message, ELECTION)
         self.broadcast(node, ELECTION, message)
-        self.write_log("Election received, broadcasting")
+        self.write_log("INF: Election received, broadcasting")
     
 
 
@@ -94,7 +94,7 @@ class LightNode(Peer):
             prev_hash = block_header[4:36]
             parent = None
             if prev_hash not in self.blocks and index != 0:
-                self.write_log(f"Block {index} not in chain, exiting")
+                self.write_log(f"X Block {index} not in chain, exiting")
                 return
             if index != 0:
                 parent = self.blocks[prev_hash]
@@ -110,13 +110,13 @@ class LightNode(Peer):
         """
         # Check if the header is valid
         if len(header) != 84:
-            self.write_log("Invalid header length")
+            self.write_log("X Invalid header length")
             return False
         # Check if the hash is valid
         header_hash = hashy(header)
         
         if header_hash in self.blocks:
-            self.write_log("Header already in chain")
+            self.write_log("X Header already in chain")
             return False
         index = int.from_bytes(header[:4], byteorder='big')
         prev_hash = header[4:36]
@@ -125,25 +125,25 @@ class LightNode(Peer):
         difficulty = int.from_bytes(header[76:80], byteorder='big')
         nonce = int.from_bytes(header[80:84], byteorder='big')
         if index != 0 and parent is None:
-            self.write_log("Parent not in chain")
+            self.write_log("X Parent not in chain")
             return False
         if not check_proof_of_work(header_hash, difficulty):
-            self.write_log("Invalid proof of work")
+            self.write_log("X Invalid proof of work")
             return False
         if difficulty != self.getDifficulty(parent):
-            self.write_log("Invalid difficulty")
+            self.write_log("X Invalid difficulty")
             return False
         if not self.check_timestamp(parent, timestamp):
-            self.write_log("Invalid timestamp")
+            self.write_log("X Invalid timestamp")
             return False
-        self.write_log("Header is valid")
+        self.write_log("INF: Header is valid")
         block = Block(index, header_hash, prev_hash, merkle_root, timestamp, difficulty, nonce, parent)
         self.blocks[header_hash] = block
         if parent == self.biggest_chain:
-            self.write_log("Header is in the biggest chain")
+            self.write_log("INF: Header is in the biggest chain")
             self.biggest_chain = block
         elif block.total_work > self.biggest_chain.total_work:
-            self.write_log("Header is in a bigger chain")
+            self.write_log("INF: Header is in a bigger chain")
             self.biggest_chain = block
         try:
             self.chain_headers.remove(parent)
@@ -165,7 +165,7 @@ class LightNode(Peer):
         returns:
             None, actual processing will be done once we get the message back.
         """
-        self.write_log(f"Requesting election {election_hash} from tracker")
+        self.write_log(f"INF: Requesting election {election_hash} from tracker")
         # Pick up to 5 random nodes
         with self.node_list_lock:
             nodes = list(self.nodes.keys())
@@ -186,21 +186,21 @@ class LightNode(Peer):
         if election_hash in self.election_reses:
             results = self.election_reses[election_hash]
         if len(results) == 0:
-            self.write_log(f"Election {election_hash} not found")
+            self.write_log(f"INF: Election {election_hash} not found")
             return "election not found"
         max_votes = 0
         best_election = None
         for result in results:
             if best_election is not None:
-                self.write_log(f"best so far: {best_election.used_keys}")
+                self.write_log(f"INF: best so far: {best_election.used_keys}")
             else:
-                self.write_log(f"best so far: None")
+                self.write_log(f"INF: best so far: None")
             vote_totals = {}
             json_data = None
             try:
                 json_data = json.loads(result)
             except json.JSONDecodeError:
-                self.write_log(f"Error decoding election result: {result}")
+                self.write_log(f"X Error decoding election result: {result}")
                 continue
             try:
                 # handling the start
@@ -211,12 +211,12 @@ class LightNode(Peer):
                 election_proof = start["proof"]
                 election_block = base64.b64decode(start["block"])
                 if election_block not in self.blocks:
-                    self.write_log(f"Election block {election_block} not in chain")
+                    self.write_log(f"X Election block {election_block} not in chain")
                     continue
                 election_block = self.blocks[election_block]
                 valid = election_block.verify_merkle_proof(election, election_proof)
                 if not valid:
-                    self.write_log(f"Election proof not valid")
+                    self.write_log(f"X Election proof not valid")
                     continue
 
                 # handling the votes
@@ -226,16 +226,16 @@ class LightNode(Peer):
                     vote_proof = vote["proof"]
                     vote_block = base64.b64decode(vote["block"])
                     if vote_block not in self.blocks:
-                        self.write_log(f"Vote block {vote_block} not in chain")
+                        self.write_log(f"X Vote block {vote_block} not in chain")
                         continue
                     vote_block = self.blocks[vote_block]
                     valid = vote_block.verify_merkle_proof(vote_obj, vote_proof)
                     if not valid:
-                        self.write_log(f"Vote proof not valid")
+                        self.write_log(f"X Vote proof not valid")
                         continue
                     vote_good = self.check_vote(vote_obj, election, time.time())
                     if not vote_good:
-                        self.write_log(f"Vote {vote_obj} not valid")
+                        self.write_log(f"X Vote {vote_obj} not valid")
                         continue
                     vote_totals[vote_obj.choice] += 1
                     election.used_keys[vote_obj.public_key] = vote_obj.choice
@@ -250,12 +250,12 @@ class LightNode(Peer):
                     end_proof = end["proof"]
                     end_block = base64.b64decode(end["block"])
                     if end_block not in self.blocks:
-                        self.write_log(f"End block {end_block} not in chain")
+                        self.write_log(f"X End block {end_block} not in chain")
                         continue
                     end_block = self.blocks[end_block]
                     valid = end_block.verify_merkle_proof(end_obj, end_proof)
                     if not valid:
-                        self.write_log(f"End proof not valid")
+                        self.write_log(f"X End proof not valid")
                         continue
                     election.finished = True
                     
@@ -266,7 +266,7 @@ class LightNode(Peer):
                         best_election = election
                          
             except KeyError:
-                self.write_log(f"Error processing election result: {json_data}")
+                self.write_log(f"X Error processing election result: {json_data}")
                 continue
         return best_election
 
@@ -277,10 +277,7 @@ class LightNode(Peer):
             if election_hash not in self.election_reses:
                 self.election_reses[election_hash] = []
             self.election_reses[election_hash].append(message[32:])
-            if len(self.election_reses[election_hash]) == 5:
-                self.write_log(f"Got all election results for {election_hash}")
-            else:
-                self.write_log(f"Got election result for {election_hash}, waiting for more")
+            self.write_log(f"Got election result for {election_hash}, waiting for more")
 
     
 

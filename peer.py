@@ -5,6 +5,10 @@ from vote import Vote
 from node import Node
 import itertools
 import json
+import threading
+import time
+import socket
+import base64
 
 from end_of_election import EndOfElection
 from random import shuffle
@@ -26,8 +30,7 @@ class Peer():
         self.nodes = {} # used to store current connections, more complex processing will be needed for larger networks, but right now we just talk to everyone.
         self.log_lock = threading.Lock() # lock for the log file
         self.log = open(f"{name}.log", "a") # log file
-        self.write_log(f"{name} initialized\n1234567890.\n") 
-        self.log.write(f"{name} initialized.\n")
+        self.log.write(f"{name} INITIALIZE.\n\n")
 
 
         self.node_list_lock = threading.Lock() # lock for the node list, so more than one thread dont race
@@ -38,9 +41,9 @@ class Peer():
         self.new_votes = {} # these are the votes that we have recieved and verified, but are not in a block on the longest chain yet
         self.new_elections = {} # these are the elections that we have recieved and verified, but are not in a block on the longest chain yet
         self.new_ended_elections = {} # these are end of election events, critical for determining security and preventing nodes from dropping votes when reporting results
-        self.open_elections = {} # elections that we think are ongoing. This may contained some recently ended elections, so still check
+        self.open_elections = {} # elections that we think are ongoing. This may contain some recently ended elections, so still check
         self.orphan_pool = {} # orphan pool
-        self.blocks = {} # all blocks and their hashes. This is storing pointers, for memory overhead for this is pretty light. Still, some trimming of stube and untaken branches could be good
+        self.blocks = {} # all blocks and their hashes. This is storing pointers. Memory overhead for this is pretty light. Still, some trimming of stubs and untaken branches could be good
         self.all_things = {} # hashes of every object we have seen, used to recalculate the new arrays when we switch chains
         self.biggest_chain = None # the node with the most work
         self.data_lock = threading.Lock() # lock for the data (all of the data structures here)
@@ -67,7 +70,6 @@ class Peer():
         """
         self.write_log("Starting mining process...\n")
         threading.Thread(target=self.mining).start()
-        self.write_log("Mining process started.\n")
 
     def mining(self):
         """
@@ -83,7 +85,6 @@ class Peer():
             old_longest = self.biggest_chain # for if there are updates mid mining below, we want to break and work on the new longer chain
             self.move_to_ended() # cleans up the open elections, and moves them to the ended elections, and generates end of election events
             objects = self.get_objects() # gets the objects that will be included in the block
-            self.write_log(f"Objects to be included in block: {objects}\n")
             merkle_root = self.get_merkle_root(objects) # gets the merkle root of the objects
             if biggest_chain is not None:
                 prev_hash = biggest_chain.hash # case where this is the first block in the chain
@@ -92,7 +93,7 @@ class Peer():
             timestamp = int(time.time()).to_bytes(8, byteorder='big')
             nonce = 0
             while nonce < 2**32: # max for 4 byte num
-                if nonce % 1000000 == 0:
+                if nonce % 10000000 == 0:
                     self.write_log(f"Mining block {index} with nonce {nonce}")
                     if self.biggest_chain != old_longest: # new block was recieved, need to break and start over
                         break
@@ -240,11 +241,9 @@ class Peer():
         with self.node_list_lock:
             # janky check to make sure we dont add ourselves
             if node.address == (socket.gethostbyname(socket.gethostname()), self.port) or node.address == ("localhost", self.port) or node.address == ("127.0.0.1", self.port):
-                self.write_log("Attempted to add self as a node. Ignoring.\n")
                 return False
             # check to make sure we dont add duplicates
             if node.address in self.nodes:
-                self.write_log(f"Node already exists: {node}\n")
                 return False
             self.nodes[node.address] = node
             self.write_log(f"Node added: {node}\n")
@@ -284,14 +283,12 @@ class Peer():
         """
         if initial:
             initial_message = connection.recv(1024)
-            self.write_log(f"Initial message from node: {initial_message}\n")
             leny = int.from_bytes(initial_message[:2], byteorder='big')
             initial_message = initial_message[2:2+leny]
             # checks the first message, ensuring its good
             valid, porty = self.verify_node_connection(initial_message)
             node = None
             if valid:
-                self.write_log(f"Connection verified: {connection}\n")
                 # sending the node list
                 node_list = [{"ip": n[0], "port": n[1]} for n in self.nodes]
                 node = Node(connection.getpeername()[0], porty, connection)
@@ -317,7 +314,6 @@ class Peer():
                     #connection was closed by peer
                     self.write_log(f"Connection closed by peer: {node}\n")
                     break
-                self.write_log(f"Message from node: {message}\n")
                 message = fragment + message
                 leny = int.from_bytes(message[:2], byteorder='big')
                 print("Message length:", leny, len(message[2:]))
@@ -356,34 +352,28 @@ class Peer():
         try:
             typey = int.from_bytes(message[:2], byteorder='big')
             if typey == BLOCK:
-                self.write_log(f"Block message received: {message}\n") 
                 self.handle_block(message[2:], node)
             elif typey == VOTE:
                 self.handle_vote(message[2:], node)
             elif typey == INIT:
-                self.write_log(f"Init message received: {message} {node.address}\n")
+                pass # we ignore more init messages from the same node
                 # Handle init message here
             elif typey == ELECTION:
                 self.handle_election(message[2:], node)
             elif typey == LONGEST_CHAIN:
                 self.receive_longest_chain(message[2:], node)
             elif typey == GET_LONGEST_CHAIN:
-                self.write_log(f"Get longest chain message received: {message}\n")
                 self.get_longest_chain(message[2:], node)
                 # Handle get longest chain message here. Return the heeaders for the longest chain
             elif typey == GET_BLOCK:
-                self.write_log(f"Get block message received: {message}\n")
                 self.get_block(message[2:], node) 
             elif typey == GET_ELECTION_RES:
-                self.write_log(f"Get election message received: {message}\n")
                 self.get_election(message[2:], node)
                 # Handle get election message here. Return the election for the given name, along with the votes, and the merkle trees to prove it.
             elif typey == ELECTION_RES:
-                self.write_log(f"Election response received: {message[2:]}\n")
                 self.handle_election_res(message[2:], node)
                 return
             elif typey == ERROR_RESPONSE:
-                self.write_log(f"Error response received: {message[2:].decode('utf-8')}\n")
                 print(f"Error response received: {message[2:].decode('utf-8')}")
                 return
             else:
@@ -408,9 +398,7 @@ class Peer():
                 # Send the block to the node
                 self.send_message(BLOCK.to_bytes(2, byteorder='big') + block.get_sendable(), node)
             else:
-                self.write_log(f"Block not found: {len(message[2:])} {message[2:]}\n")
-                for key in self.blocks:
-                    self.write_log(f"   Block in chain: {len(key)} {key} ")
+                self.write_log(f"Get block request failed: Block not found: {len(message[2:])} {message[2:]}\n")
                 # Send an error message to the node
                 self.send_error(node, "Block not found")
     def send_message(self, message, node):
@@ -421,12 +409,10 @@ class Peer():
         - node: The node to send the message to
         """
         if node is None:
-            self.write_log("Node is None, not sending message\n")
             return
         with self.send_lock:
             leny = len(message)
             node.connection.send(leny.to_bytes(2, byteorder='big') + message)
-            self.write_log(f"Message sent to node {node}: {message}\n")
     def receive_longest_chain(self, message, node):
         """
         Handles receive longest chain messages from nodes. Check it for correctness, and see if we need to switch chains (if so, we need to grab the data for all the nodes we dont have)
@@ -472,7 +458,7 @@ class Peer():
             result = b''.join(result)
             # send the result back to the node
             self.send_message(LONGEST_CHAIN.to_bytes(2, byteorder='big') + result, node)
-            self.write_log(f"Longest chain sent to node {node}: {result}\n")
+            self.write_log(f"Longest chain sent to node {node}\n")
 
 
     def handle_election_res(self, message, node):
@@ -491,7 +477,7 @@ class Peer():
         - node: The node that sent the message
         """
         vote = Vote(message)
-        self.write_log(f"Vote message received: {vote}\n")
+        self.write_log(f"Vote message received: {vote.jsonify()}\n")
         with self.data_lock:
             election = None
             if vote.election_hash in self.open_elections: 
@@ -502,10 +488,11 @@ class Peer():
             res = self.check_vote(vote, election, time.time() + 20) # makes sure it will be valid for long enough that we could mine theoretically
 
             if not res:
-                self.write_log(f"Vote failed: {res}\n")
+                self.write_log(f"VOTE FAILED CHECKS: {vote.jsonify()}\n")
                 return
             
             gas = 1
+            self.write_log(f"[ ] Vote added: {vote.jsonify()}\n")
             election.used_keys[vote.public_key] = vote.choice # mark the key as used
             self.all_things[hashy(vote.jsonify())] = (gas, vote) # theoritical GAS ammount, unimplemented
             self.new_votes[hashy(vote.jsonify())] = vote # add the vote to the new votes so we can throw it on a block
@@ -522,18 +509,19 @@ class Peer():
         - node: The node that sent the message
         """
         election = Election(message)
+        self.write_log(f"Election message received: {election.jsonify()}\n")
         with self.data_lock:
             if election.hashy in self.open_elections:
-                self.write_log(f"Election already exists: {election.name}\n")
+                self.write_log(f"X Election already exists: {election.name}\n")
                 return
             if election.end_time < time.time():
-                self.write_log(f"Election has already ended: {election.name}\n")
+                self.write_log(f"X Election has already ended: {election.name}\n")
                 return
             gas = 1
             self.open_elections[election.hashy] = election
             self.all_things[hashy(election.jsonify())] = (gas, election) # theoritical GAS ammount, unimplemented
             self.new_elections[hashy(election.jsonify())] =  election
-            self.write_log(f"Election added: {election.name}\n")
+            self.write_log(f"[ ] Election added: {election.name}\n")
             # Broadcast the election to all nodes
             self.broadcast(node, ELECTION, message)
     
@@ -557,22 +545,22 @@ class Peer():
         """
         # check if the key is not used
         if vote.public_key in election.used_keys:
-            self.write_log(f"Vote from used public key: {vote.public_key}\n")
+            self.write_log(f"X Vote from used public key: {vote.public_key}\n")
             return False
         
         # check if the public key is in the election
         if vote.public_key not in election.public_keys:
-            self.write_log(f"Vote from non-existent public key: {vote.public_key}\n")
+            self.write_log(f"X Vote from non-existent public key: {vote.public_key}\n")
             return False
         
         # check if the choice is in the election
         if vote.choice not in election.choices:
-            self.write_log(f"Vote for non-existent choice: {vote.choice}\n")
+            self.write_log(f"X Vote for non-existent choice: {vote.choice}\n")
             return
         
         # check that the signature is valid
         if not vote.check_sig():
-            self.write_log(f"Vote signature verification failed: {vote.signature}\n")
+            self.write_log(f"X Vote signature verification failed: {vote.signature}\n")
             return False
         return True
 
@@ -603,7 +591,7 @@ class Peer():
                 found = True
             # otherwise, we need to find the parent block
             if this_hash in self.blocks:
-                self.write_log(f"Duplicate block received: {message}\n")
+                self.write_log(f"INF: Duplicate block received: {message}\n")
                 # WE FOUND A DUPLICATE, BREAK IT UP.
                 return
             if prev_hash in self.blocks:
@@ -615,7 +603,7 @@ class Peer():
 
             # throwing it in the orphan pool, we can check it later once we get the chain it goes on.    
             if not found:
-                self.write_log(f"Orphan block received: {message}\n")
+                self.write_log(f"INF: Orphan block received: {message}\n")
                 if prev_hash not in self.orphan_pool:
                     self.orphan_pool[prev_hash] = []
                 if message not in self.orphan_pool[prev_hash]:
@@ -668,8 +656,7 @@ class Peer():
         data = []
         for key in objects:
             if "type" not in objects[key]:
-                self.write_log(f"Malformed object in block data: {objects[key]}\n")
-                print(f"Malformed object in block data: {objects[key]}")
+                self.write_log(f"X Malformed object in block data: {objects[key]}\n")
                 return
             obj = objects[key]
             if obj["type"] == "vote":
@@ -679,60 +666,58 @@ class Peer():
             elif obj["type"] == "end_of_election":
                 data.append(EndOfElection(obj))
             else:
-                self.write_log(f"Unknown object type in block data: {obj['type']}\n")
-                print(f"Unknown object type in block data: {obj['type']}")
+                self.write_log(f"X Unknown object type in block data: {obj['type']}\n")
                 return
         # Create a new block object
         block = Block(index, header_hash, prev_hash, merkle_root, timestamp, difficulty, nonce, parent, data=data)
         # checking the merkle root
         if block.merkle_root != block.get_merkle_root():
-            self.write_log(f"Invalid merkle root: {block.merkle_root} != {block.get_merkle_root()}\n")
-            print("invalid merkle root")
+            self.write_log(f"X Invalid merkle root: {block.merkle_root} != {block.get_merkle_root()}\n")
             self.send_error(node, "Invalid merkle root")
             return
         ##Checking for rule violations:
         # Difficulty check (goes from the parent, since that is where the minor calculates it)
         if difficulty != self.getDifficulty(parent):
-            self.write_log(f"Difficulty mismatch: {difficulty} != {self.getDifficulty(parent)}\n")
+            self.write_log(f"X Difficulty mismatch: {difficulty} != {self.getDifficulty(parent)}\n")
             print("invalid difficulty")
             self.send_error(node, "Invalid difficulty")
             return
         
         # checking the POW
         if not check_proof_of_work(header_hash, difficulty):
-            self.write_log(f"Invalid proof of work: {header_hash}\n")
-            print("invalid PPOW")
+            self.write_log(f"X Invalid proof of work: {header_hash}\n")
             self.send_error(node, "Invalid proof of work")
             return
 
         #checking the timestamp
         if not self.check_timestamp(parent, timestamp):
-            self.write_log(f"Invalid timestamp: {timestamp}\n")
+            self.write_log(f"X Invalid timestamp: {timestamp}\n")
             self.send_error(node, "Invalid timestamp")
             return
 
         # checking the signatures (also checks other app correctness things with the elections and votes)
         if not self.check_sigs(block, parent):
-            self.write_log("Invalid signatures in block\n")
+            self.write_log("X Invalid signatures in block\n")
             self.send_error(node, "Invalid signatures")
             return
 
 
         # Remove the parent from self.chain_headers and replace with this node
-        self.write_log(f"Block verified: {block}\n")
+        self.write_log(f"Block verified: Index: {block.index}, Difficulty: {block.difficulty}, Objects: {json.dumps([obj.jsonify() for obj in block.data])}\n")
         if parent == self.biggest_chain:
             self.biggest_chain = block
             self.remove_new(block) # simple check to update the new queues
-            self.write_log(f"Chain extended: {block}\n")
-        elif block.total_work > parent.total_work:
+            self.write_log(f"INF: Chain extended\n")
+        elif block.total_work > self.biggest_chain.total_work:
             self.biggest_chain = block
             self.recompute_new(block) # more through check, goea back throug the whole chain
-            self.write_log(f"Chain changed: {block}\n")
+            self.write_log(f"INF: Longest chain changed\n")
         try:
             self.chain_headers.remove(parent)
         except ValueError:
             pass
 
+        
         self.chain_headers.append(block)
         self.blocks[header_hash] = block
         self.broadcast(node, BLOCK, message)
@@ -740,6 +725,7 @@ class Peer():
         # checking if this was the parent to any orphans, if so we can process those.
         if header_hash in self.orphan_pool:
             for orphan in self.orphan_pool[header_hash]:
+                self.log(f"INF: Orphan block parent found: {orphan}\n")
                 self.verify_block(orphan, block, None)
             del self.orphan_pool[header_hash]
     def send_error(self, node, message):
@@ -871,7 +857,7 @@ class Peer():
                 if thing.new:
                     self.new_votes[hashy(thing.jsonify())] = thing
             else:
-                self.write_log(f"Invalid object in recompute_new: {thing}\n")
+                self.write_log(f"X Invalid object in recompute_new: {thing}\n")
                 continue
     
     def move_to_ended(self):
@@ -886,22 +872,18 @@ class Peer():
                 election = self.open_elections[key]
                 if election.end_time < time.time():
                     keys_to_remove.append(key) # we will remove this later
-                    self.write_log(f"Election ended: {election.name}\n")
+                    self.write_log(f"X Election ended: {election.name}\n")
                     results = {} # track results so we can put them on the blockchain
                     thing = self.biggest_chain # we will loop backwards from here
                     already_done = False # if we have already added this election end to the chain
                     found_election = None # confirming the election actually exists
                     while thing is not None:
-                        self.write_log(f"Checking block: {thing.index}")
                         self.write_log(thing.votes)
                         if election.hashy in thing.election_ends:
                             already_done = True
                             break
 
                         if election.hashy in thing.votes:
-                            self.write_log(f"Found votes for election")
-                            
-
                             for vote in thing.votes[election.hashy]:
                                 if vote.choice not in results:
                                     results[vote.choice] = 0
@@ -911,11 +893,10 @@ class Peer():
                             break    
                         thing = thing.previous_block
                     if found_election is None: #never on the chain
-                        self.write_log(f"Election not found: {election.name}, likely never added to chain\n")
+                        self.write_log(f"X Election not found: {election.name}, likely never added to chain\n")
                         continue
                     if not already_done: # we have not added this election end to the chain yet
-                        self.write_log("results: " + str(results) + "\n")
-                        self.write_log(f"Adding end of election to chain: {election.hashy}\n")
+                        self.write_log(f"INF: election {election.hashy} results: " + str(results) + "\n")
                         election_end = EndOfElection({"election_hash": base64.b64encode(election.hashy).decode('utf-8'), "results": results})
                         self.new_ended_elections[hashy(election_end.jsonify())] = election_end 
             for key in keys_to_remove:
@@ -943,7 +924,7 @@ class Peer():
                         # print("Sending message to node:", node.address)
                         node.connection.send(message)
                     except Exception as e:
-                        self.write_log(f"Failed to send message to {node}: {e}\n")
+                        self.write_log(f"X Failed to send message to {node}: {e}\n")
                         self.remove_node(node)
 
 
@@ -960,7 +941,7 @@ class Peer():
                 return True, int.from_bytes(initial_message[2:4], byteorder='big')
             return False, None
         except Exception as e:
-            self.write_log(f"Failed to verify node connection: {e}\n")
+            self.write_log(f"X Failed to verify node connection: {e}\n")
             return False, 0 
     
     def getDifficulty(self, block):
@@ -1053,7 +1034,6 @@ class Peer():
             for election_hash in block.votes:
                 for vote in block.votes[election_hash]:
                     election = None
-                    self.write_log(block.elections)
                     # if its in this block, thats cool
                     if vote.election_hash in block.elections:
                         election = block.elections[vote.election_hash]
@@ -1068,12 +1048,12 @@ class Peer():
                                 this = this.previous_block
                     # if we never found it, we have a problem
                     if election is None:
-                        self.write_log(f"Election not found: {election_hash}\n")
+                        self.write_log(f"X Election not found: {election_hash}\n")
                         return False
                     # check the vote, ensure the sig is good and everything
                     res = self.check_vote(vote, election, block.timestamp)
                     if not res:
-                        self.write_log(f"Vote signature verification failed: {vote.signature}\n")
+                        self.write_log(f"X Vote signature verification failed: {vote.signature}\n")
                         return False
             for key in block.election_ends:
                 end = block.election_ends[key]
@@ -1081,12 +1061,8 @@ class Peer():
                 totals = {}
                 election = None
                 # check to make sure the results said here accuratly reflect the votes in the block and on the rest of the chain.
-                self.write_log(f"End of election: {end.election_hash} {this}")
                 while this is not None:
-                    self.write_log(f"Checking block: {this.index}\n")
-                    self.write_log(this.votes)
                     if end.election_hash in this.votes:
-                        self.write_log(f"Found votes for election")
                         for vote in this.votes[end.election_hash]:
                             if vote.choice not in totals:
                                 totals[vote.choice] = 0
@@ -1097,16 +1073,16 @@ class Peer():
                     else:
                         this = this.previous_block
                 if election is None:
-                    self.write_log(f"Election not found: {end.election_hash}\n")
+                    self.write_log(f"X Election not found: {end.election_hash}\n")
                     return False
                 # Check if the election is still open
                 if election.end_time > block.timestamp:
-                    self.write_log(f"Election is still open: {election.name}\n")
+                    self.write_log(f"X Election is still open: {election.name}, cannot put end on it\n")
                     return False
                 # Check if the election has been tampered with
                 summy_incoming = 0
-                self.write_log(f"End of election results: {end.results}\n")
-                self.write_log(f"Totals: {totals}\n")
+                self.write_log(f"INF: End of election results: {end.results}\n")
+                self.write_log(f"INF: Totals: {totals}\n")
                 for key in end.results:
                     summy_incoming += end.results[key]
                     if end.results[key] != 0 and key not in totals:
@@ -1117,10 +1093,10 @@ class Peer():
                     summy_real += totals[key]
                     if totals[key] != 0: 
                         if key not in end.results:
-                            self.write_log(f"Election tampered with: 2 {key}\n")
+                            self.write_log(f"X Election tampered with: 2 {key}\n")
                             return False
                         if totals[key] != end.results[key]:
-                            self.write_log(f"Election tampered with: 3 {totals[key]} != {end.results[key]}\n")
+                            self.write_log(f"X Election tampered with: 3 {totals[key]} != {end.results[key]}\n")
                             return False
                     
                     

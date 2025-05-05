@@ -3,14 +3,14 @@ import os
 from flask_cors import CORS
 from flask_socketio import SocketIO
 from vote import submit_vote, get_results
-from node import Node  # assuming node.py contains your blockchain logic
+from voter_node import VoterNode
 
 app = Flask(__name__, static_folder='campus-voting/ui/build', static_url_path='')
 CORS(app)
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 # Create a global node instance
-node = Node()
+node = VoterNode()
 
 @app.route('/api/node-info', methods=['GET'])
 def get_node_info():
