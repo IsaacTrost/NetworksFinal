@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Campus Voting</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Campus Blockchain Voting</h1>
+    <div id="node-info" class="card"></div>
+
+    <div class="card">
+      <h2>Cast Your Vote</h2>
+      <form id="vote-form">
+        <label for="election">Election:</label>
+        <select id="election" required></select>
+
+        <label for="candidate">Candidate:</label>
+        <select id="candidate" required></select>
+
+        <label for="privateKey">Private Key:</label>
+        <input type="password" id="privateKey" required />
+
+        <button type="submit">Submit Vote</button>
+      </form>
+      <div id="vote-result"></div>
+    </div>
+
+    <div class="card">
+      <h2>Election Results</h2>
+      <button onclick="fetchResults()">Refresh Results</button>
+      <ul id="results-list"></ul>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
