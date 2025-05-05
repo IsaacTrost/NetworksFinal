@@ -1,44 +1,51 @@
-from flask import Flask, send_from_directory, jsonify, request
-import os
+from flask import Flask, request, jsonify
 from flask_cors import CORS
-from flask_socketio import SocketIO
-from vote import submit_vote, get_results
-from node import Node  # assuming node.py contains your blockchain logic
+from node import Node  # Adjust if needed
+import time
 
-app = Flask(__name__, static_folder='campus-voting/ui/build', static_url_path='')
+app = Flask(__name__)
 CORS(app)
-socketio = SocketIO(app, cors_allowed_origins="*")
 
-# Create a global node instance
-node = Node()
+# Initialize the node 
+node = Node(name="Node 1", port=5000)
 
 @app.route('/api/node-info', methods=['GET'])
 def get_node_info():
     return jsonify({
         "name": node.name,
-        "chain_length": len(node.blockchain),
-        "peers": node.peers
+        "address": node.host,
+        "port": node.port
     })
 
+@app.route('/api/elections', methods=['GET'])
+def get_elections():
+    # Returns the list of elections and their candidates
+    elections = node.blockchain.get_elections()
+    return jsonify(elections)
+
 @app.route('/api/vote', methods=['POST'])
-def vote():
-    data = request.json
-    voter = data.get("voter")
-    candidate = data.get("candidate")
-    success, message = submit_vote(node, voter, candidate)
-    return jsonify({"success": success, "message": message})
+def submit_vote():
+    data = request.get_json()
+    try:
+        tx = node.create_transaction(
+            election_id=data["election_id"],
+            candidate_id=data["candidate_id"],
+            private_key=data["private_key"],
+            timestamp=data.get("timestamp", int(time.time()))
+        )
+        node.broadcast_transaction(tx)
+        return jsonify({"message": "Vote submitted and broadcasted."})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
 
 @app.route('/api/results', methods=['GET'])
-def results():
-    return jsonify(get_results(node))
-
-@app.route('/')
-@app.route('/<path:path>')
-def serve(path=''):
-    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
-        return send_from_directory(app.static_folder, path)
-    return send_from_directory(app.static_folder, 'index.html')
+def get_results():
+    try:
+        results = node.blockchain.get_results()
+        return jsonify(results)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=5000)
+    app.run(port=5000, debug=True)
 
