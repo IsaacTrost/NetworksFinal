@@ -1,3 +1,6 @@
+let electionsCache = [];
+let chart;
+
 async function fetchNodeInfo() {
   const res = await fetch('/api/node-info');
   const data = await res.json();
@@ -6,7 +9,9 @@ async function fetchNodeInfo() {
 
 async function fetchElections() {
   const res = await fetch('/api/elections');
+  if (!res.ok) throw new Error(`Failed to load elections: ${res.status}`);
   const elections = await res.json();
+  electionsCache = elections;
 
   const electionSelect = document.getElementById('election');
   if (electionSelect) {
@@ -18,8 +23,13 @@ async function fetchElections() {
       electionSelect.appendChild(option);
     });
 
-    electionSelect.addEventListener('change', () => updateCandidates(elections));
+    electionSelect.addEventListener('change', () => {
+      updateCandidates(elections);
+      updateChart();
+    });
+
     updateCandidates(elections);
+    updateChart();
   }
 }
 
@@ -35,6 +45,55 @@ function updateCandidates(elections) {
       option.textContent = c;
       candidateSelect.appendChild(option);
     });
+  }
+}
+
+async function updateChart() {
+  const electionId = document.getElementById('election')?.value;
+  if (!electionId) return;
+
+  try {
+    const res = await fetch('/api/results');
+    if (!res.ok) throw new Error(`Failed to fetch results: ${res.status}`);
+    const results = await res.json();
+
+    const selectedElection = electionsCache.find(e => e.hash === electionId);
+    if (!selectedElection) return;
+
+    const candidateData = selectedElection.choices.reduce((acc, c) => {
+      acc[c] = 0;
+      return acc;
+    }, {});
+
+    const electionResult = results[selectedElection.name];
+    if (electionResult?.per_candidate) {
+      for (const [candidate, count] of Object.entries(electionResult.per_candidate)) {
+        candidateData[candidate] = count;
+      }
+    }
+
+    const ctx = document.getElementById('voteChart');
+    if (!ctx) return;
+
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(candidateData),
+        datasets: [{
+          label: 'Votes',
+          data: Object.values(candidateData),
+          backgroundColor: 'rgba(75, 192, 192, 0.6)'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } }
+      }
+    });
+  } catch (err) {
+    console.error('Failed to update chart:', err);
   }
 }
 
@@ -59,8 +118,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const result = await res.json();
       const resultDiv = document.getElementById('vote-result');
-      resultDiv.classList.remove('d-none');
-      resultDiv.textContent = result.message || result.error;
+      if (resultDiv) {
+        resultDiv.classList.remove('d-none');
+        resultDiv.textContent = result.message || result.error || 'Vote submitted.';
+      }
+
+      updateChart();
     });
   }
 
@@ -74,6 +137,7 @@ async function fetchResults() {
   const resultsList = document.getElementById('results-list');
   if (!resultsList) return;
   const res = await fetch('/api/results');
+  if (!res.ok) throw new Error(`Failed to fetch results: ${res.status}`);
   const data = await res.json();
   resultsList.innerHTML = '';
   for (const name in data) {
@@ -89,6 +153,7 @@ async function loadAllBlockchainElections() {
   if (!list) return;
   try {
     const res = await fetch('/api/elections');
+    if (!res.ok) throw new Error(`Failed to load elections list: ${res.status}`);
     const elections = await res.json();
     list.innerHTML = '';
     elections.forEach(e => {
