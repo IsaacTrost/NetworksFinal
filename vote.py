@@ -10,15 +10,27 @@ class Vote:
     Simple class to represent a vote.
     """
     def __init__(self, message):
-        try:
-            data = message if isinstance(message, dict) else json.loads(message)
-            election_hash = data["election_hash"]
-            choice = data["choice"]
-            public_key = data["public_key"]
-            signature = data["signature"]
-        except (KeyError, json.JSONDecodeError) as e:
-            raise e
-            raise ValueError(f"Invalid vote message format: {e}")
+        """
+        Initializes the Vote object with the given message.
+        The message can be a JSON string or a dictionary.
+
+        args:
+        - message: JSON string or dictionary containing the vote data.
+        The expected format is:
+        {
+            "election_hash": "<base64_encoded_election_hash>",
+            "choice": "<choice>",
+            "public_key": "<base64_encoded_public_key>",
+            "signature": "<base64_encoded_signature>"
+        }
+        """
+
+        data = message if isinstance(message, dict) else json.loads(message)
+        election_hash = data["election_hash"]
+        choice = data["choice"]
+        public_key = data["public_key"]
+        signature = data["signature"]
+        
         self.election_hash_b64 = election_hash
         self.election_hash = base64.b64decode(election_hash)
         self.choice = choice
@@ -31,13 +43,19 @@ class Vote:
         """
         Converts the vote to JSON format.
         """
-        return json.dumps({
+        return json.dumps(self.get_json_dict())
+
+    def get_json_dict(self):
+        """
+        Returns the vote as a dictionary.
+        """
+        return {
+            "type": "vote",
             "election_hash": self.election_hash_b64,
             "choice": self.choice,
             "public_key": self.public_key,
             "signature": self.signature,
-        })
-    
+        } 
     @staticmethod
     def sign(private_key, election_hash, choice):
         """
@@ -62,10 +80,8 @@ class Vote:
     def check_sig(self):
         """
         Checks the signature of the vote.
-        Assumes the signature is over (election_hash + choice) using the provided public_key.
+        The signature should be over (election_hash + choice) using the provided public_key.
         """
-        
-
         try:
             # Prepare the message that was signed
             message = (self.election_hash + self.choice.encode('utf-8'))

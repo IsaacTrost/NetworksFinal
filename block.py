@@ -1,13 +1,14 @@
 from utils import *
 from election import Election
 from vote import Vote
+from end_of_election import EndOfElection
 import json
 
 class Block:
     """
     Simple class to represent a block in the blockchain.
     """
-    def __init__(self, index, hashy, previous_hash, merkle_root, timestamp, difficulty, nonce, parent = None, data = []):
+    def __init__(self, index, out_hash, previous_hash, merkle_root, timestamp, difficulty, nonce, parent = None, data = []):
         assert isinstance(index, int), "Index must be an integer"
         assert isinstance(previous_hash, bytes), "Previous hash must be bytes"
         assert isinstance(merkle_root, bytes), "Merkle root must be bytes"
@@ -27,20 +28,31 @@ class Block:
         self.election_ends = {}
         self.merkle_root = merkle_root
         self.nonce = nonce
+        self.data = data
+        transactions = []
+        for data in self.data:
+            transactions.append(data.jsonify())
+
+        # First, hash all transactions if they aren't already hashed
+        self.leaves = [hashy(tx) for tx in transactions]
+        while len(self.leaves) < 2**MAX_LEVELS:
+            self.leaves.append(b'\x00' * 32)
         
-        for item in data:
+        for item in self.data:
             if type(item) == Vote:
-                if item.election_name not in self.votes:
-                    self.votes[item.election_name] = []
-                self.votes[item.election_name].append(item)
+                if item.election_hash not in self.votes:
+                    self.votes[item.election_hash] = []
+                self.votes[item.election_hash].append(item)
             elif type(item) == Election:
-                self.elections[item.name] = item
+                self.elections[hashy(item.jsonify())] = item
+            elif type(item) == EndOfElection:
+                self.election_ends[item.election_hash] = item
             else:
                 raise ValueError(f"Invalid data type in block: {type(item)}")
             
             
 
-        self.hash = hashy
+        self.hash = out_hash 
         self.difficulty = difficulty
     def get_header(self):
         return b''.join([
@@ -59,34 +71,14 @@ class Block:
         # Creating the header
         header = self.get_header() 
         # Creating the body (transactions in the block)
-        body = b''
-        for election in self.elections:
-            body += self.elections[election].jsonify().encode('utf-8')
+        body = {}
         count = 0
-        for vote in self.votes:
-            body += json.dumps({
-            "index": count,
-            "data": self.votes[vote].jsonify()
-            }).encode('utf-8')
+        for data in self.data:
+            body[count] = data.get_json_dict()
             count += 1
-        return header + body
+        return header + json.dumps(body).encode('utf-8')
     
-    def get_election_peices(self, name):
-        """
-        Returns the election pieces for the given election name.
-        """
-        res = ""
-        if name in self.elections:
-            res += json.dumps({
-                "election": self.elections[name].jsonify(),
-                "merkle_proof": self.get_merkle_proof(list(self.elections.keys()).index(name))
-            })
-        if name in self.votes:
-            for vote in self.votes[name]:
-                res += json.dumps({
-                    "vote": vote.jsonify(),
-                    "merkle_proof": self.get_merkle_proof(list(self.votes.keys()).index(name) + len(self.elections))
-                })
+
     def create_merkle_tree(self):
         """
         Creates a Merkle Tree from a list of transactions and returns the root hash.
@@ -96,19 +88,16 @@ class Block:
         Returns:
             bytes: The merkle tree, represented as a binary tree array
         """
-        transactions = []
-        for election in self.elections:
-            transactions.append(self.elections[election].jsonify().encode('utf-8'))
-        for vote in self.votes:
-            transactions.append(self.votes[vote].jsonify().encode('utf-8'))
-            
-        # First, hash all transactions if they aren't already hashed
-        leaves = [hashy(tx) for tx in transactions]
+        # print("ends:", self.election_ends)
+        # print("elections: ", self.elections)
+        # print("votes: ", self.votes)
+        leaves = self.leaves 
         
         # If odd number of transactions, duplicate the last one
         while len(leaves) < 2**MAX_LEVELS:
             leaves.append(b'\x00' * 32)
-        tree = leaves
+        tree = []
+        tree.append(leaves)
         # Build tree bottom-up
         while len(leaves) > 1:
             next_level = []
@@ -118,7 +107,7 @@ class Block:
                 combined = leaves[i] + leaves[i + 1]
                 next_level.append(hashy(combined))
             leaves = next_level
-            tree = leaves + tree
+            tree.append(leaves)
 
         return tree
     
@@ -131,7 +120,7 @@ class Block:
         Returns:
             bytes: The merkle root hash
         """
-        return self.create_merkle_tree()[0]
+        return self.create_merkle_tree()[-1][0]
     
     def verify_merkle_proof(self, transaction, proof):
         """
@@ -144,9 +133,8 @@ class Block:
         Returns:
             bool: True if the proof is valid
         """
-        if type(proof) != list:
-            proof = self.parse_merkle_proof(proof)
-        current_hash = hashy(transaction)
+        proof = self.parse_merkle_proof(proof)
+        current_hash = hashy(transaction.jsonify())
         
         for proof_hash, is_left in proof:
             if is_left:
@@ -165,76 +153,50 @@ class Block:
         Returns:
             list: The parsed proof as a list of (hash, is_left) tuples
         """
-        proof_list = json.loads(proof)
+        if isinstance(proof, str):
+            proof = json.loads(proof)
+        
         parsed_proof = []
-        for item in proof_list:
-            hash_part = bytes.fromhex(item["hash"])
-            is_left = item["is_left"]
-            parsed_proof.append((hash_part, is_left))
-        return parsed_proof
+        for hashy, left in proof:
+            if isinstance(hashy, str):
+                # If the item is a string, it's a hash
+                parsed_proof.append((base64.b64decode(hashy), left))
+            else:
+                # If it's not a string, it's a boolean
+                parsed_proof.append((hashy, left))
+        return parsed_proof 
+        
     
-    def get_merkle_proof(self, target_tx_index):
+    def get_merkle_proof(self, target_tx):
         """
         Generates a Merkle proof for a specific transaction.
         
         Args:
             transactions: List of all transactions
-            target_tx_index: Index of the transaction to prove
+            target_tx: Hash of object (bytes)
         Returns:
             list: The proof as a list of (hash, is_left) tuples
         """
-
-        transactions = []
-        for election in self.elections:
-            transactions.append(self.elections[election].jsonify().encode('utf-8'))
-        for vote in self.votes:
-            transactions.append(self.votes[vote].jsonify().encode('utf-8'))
-        if not transactions:
-            return []
+        target_tx_index = self.leaves.index(target_tx)
+        if target_tx_index == -1:
+            raise ValueError("Transaction not found in the block")
+         
             
-        # First, hash all transactions
-        nodes = [hashy(tx) for tx in transactions]
-        
-        # If odd number of transactions, duplicate the last one
-        if len(nodes) % 2 == 1:
-            nodes.append(nodes[-1])
+        tree = self.create_merkle_tree()
         
         # Track the position of our target transaction
         current_index = target_tx_index
         proof = []
         
-        while len(nodes) > 1:
-            next_level = []
-            
-            for i in range(0, len(nodes), 2):
-                if i + 1 >= len(nodes):
-                    next_level.append(nodes[i])
-                    continue
-                    
-                # If this pair includes our target transaction
-                if i == current_index - (current_index % 2):
-                    # Add the sibling to our proof
-                    proof_hash = nodes[i + 1] if current_index % 2 == 0 else nodes[i]
-                    is_left = current_index % 2 == 0
-                    proof.append((proof_hash, is_left))
-                
-                combined = nodes[i] + nodes[i + 1]
-                next_level.append(hashy(combined))
-            
-            nodes = next_level
+        for level in tree[:-1]:
+            # print("Current index:", current_index)
+            # print("Level:", level)
+            if current_index % 2 == 1:
+                proof.append((base64.b64encode(level[current_index - 1]).decode('utf-8'), True))  # Isleft is true because 1 means we are the right side, and the hash we are adding is left
+            else:
+                proof.append((base64.b64encode(level[current_index + 1]).decode('utf-8'), False))
             current_index = current_index // 2
-            
-            if len(nodes) % 2 == 1 and len(nodes) > 1:
-                nodes.append(nodes[-1])
-        
         return proof
     
-    def jsonify_data(self):
-        """
-        Converts the block data to JSON format.
-        """
-        return json.dumps({
-            "elections" : [election.jsonify() for election in self.elections.values()],
-            "votes" : [vote.jsonify() for vote in self.votes.values()]
-        })
+
     

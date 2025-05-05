@@ -1,0 +1,505 @@
+1746454285.7380989: a2 initialized
+1234567890.
+
+a2 initialized.
+1746454285.7412844: Node added: <node.Node object at 0x7f66b826a6b0>
+
+1746454285.7415762: Message sent to node <node.Node object at 0x7f66b826a6b0>: b'\x00\x01\x13\x89'
+
+1746454285.742792: Node list received: []
+
+1746454285.7433283: Message sent to node <node.Node object at 0x7f66b826a6b0>: b'\x00\x06\x00\x00\x00\x00'
+
+1746454285.7450595: Message from node: b'\x00\x02\x00\x05'
+
+1746454287.1188037: Connection accepted: <socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 5001), raddr=('127.0.0.1', 59642)>
+
+1746454287.119162: Initial message from node: b'\x00\x04\x00\x01\x13\x8a'
+
+1746454287.11947: Connection verified: <socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 5001), raddr=('127.0.0.1', 59642)>
+
+1746454287.1196866: Message sent to node <node.Node object at 0x7f66b826b670>: b'[{"ip": "localhost", "port": 5000}]'
+
+1746454287.1198175: Node added: <node.Node object at 0x7f66b826b670>
+
+1746454287.1215558: Message from node: b'\x00\x06\x00\x06\x00\x00\x00\x00'
+
+1746454287.1216395: Get longest chain message received: b'\x00\x06\x00\x00\x00\x00'
+
+1746454287.1217196: Message sent to node <node.Node object at 0x7f66b826b670>: b'\x00\x05'
+
+1746454287.1217747: Longest chain sent to node <node.Node object at 0x7f66b826b670>: b''
+
+1746454287.4689834: Message from node: b'\x00X\x00\x03\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x0e\x00\x00\x00\x08\x00\x04\xa6&{}'
+
+1746454287.469113: Block message received: b'\x00\x03\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x0e\x00\x00\x00\x08\x00\x04\xa6&{}'
+
+1746454287.4697208: Block verified: <block.Block object at 0x7f66b826b6d0>
+
+1746454287.4697907: Chain extended: <block.Block object at 0x7f66b826b6d0>
+
+1746454287.7453375: Starting mining process...
+
+1746454287.745791: Mining process started.
+
+1746454287.751039: Objects to be included in block: []
+
+1746454287.7566884: Mining block 1 with nonce 0
+1746454289.190136: Message from node: b'\x05\x18\x00\x04{"type": "election", "name": "test_election", "choices": ["A", "B", "C"], "public_keys": ["MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3rcoqx6a+N7vfeyyoY5PdhtE4up0xJCz6oa3dgRLspvXktM9SxTizHNyDJkj1wHAWIZ9vwZOserSa4BVCgWqEq9EQr9j2X9mCUBXtm++5Z+UdqeR5JZogtDugaJPAlP1b6RpDNj1Sxb7ctUQq2bNYGgf/UepUjZYOzjst8j70Jv6A+hL0g5VPiuyiGoKkQuSLXPJ2UJykGNc5XAaK8983PMX6eQPg4HvqFNTvxL7jwyhF0ku7rKc0FBb7SwWq/ToGMV4KH/ZtT/DCf/fdYiD3bh5XDqTfknw5qNQ+hhtOZI7g2DrDe+5+aoq1MtS6EVEbNy3c3otU+T88OX3SKM0wIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7brGG6RZkUFO+b4SyMSAbhPIZOjZm3dcE55fyh00a9ogm57iRYUdMZqs/9fdUvvxe9RjwFe0PfTm8408MmiH9P034jBD6EOOSPk5kSZrxJxg9QQgmd4FGz7zhCiBd9nEhWKesJK9/QGeR7tIomVjS2QGj8LsKIDvDBLG+2UZ88gkETuuRbFV0j82yOG9Ubq57+B49eQ+vZCZhms/eWI9geFZT9H+PpdvYBPbfm7Js3No6cSIO3YCqlK0edT6dwW6PeNYTBU23nsCaibtO1BqSnD89dOxnI/+GwUm2CFOLwLtUlkz40PDzgpMEWgsCo67H4A2ZzOKd59SzjL/9ujwlQIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn0gzrT8olsDnBimVR5qfm2PaDurY1iNvQg8RcGJjLF+qqXuiJUP2YbH/e74rMSHBCWAEtAYOYJUZAgNz0koj3mNAMLHLsWvsLzYvdNPS/q2sm9LSTDtTzin42bQMGbQ5oGTK1jUuYs+qnttzv1IV3KgrA4E3yprh0wzXegFxian2vNaL1XB2YsbarBZw+ltvMg76goI372ILul49W7xTA5ZcT/w1NVtmy++razbFiiobLXwEbXR16SikVQaRILgBIAMZoYgtPAhtSkGaYjJPq5FN29XUtWoBUl/wyAuSE1MH+rYvTuWPLxXAdTWxsSaHgGMDQWbSQxnvC4e5BavBZQIDAQAB"], "end_time": 1746454319}'
+
+1746454289.2251306: Election added: test_election
+
+1746454289.2857895: Message from node: b'\x05\x18\x00\x04{"type": "election", "name": "test_election", "choices": ["A", "B", "C"], "public_keys": ["MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3rcoqx6a+N7vfeyyoY5PdhtE4up0xJCz6oa3dgRLspvXktM9SxTizHNyDJkj1wHAWIZ9vwZOserSa4BVCgWqEq9EQr9j2X9mCUBXtm++5Z+UdqeR5JZogtDugaJPAlP1b6RpDNj1Sxb7ctUQq2bNYGgf/UepUjZYOzjst8j70Jv6A+hL0g5VPiuyiGoKkQuSLXPJ2UJykGNc5XAaK8983PMX6eQPg4HvqFNTvxL7jwyhF0ku7rKc0FBb7SwWq/ToGMV4KH/ZtT/DCf/fdYiD3bh5XDqTfknw5qNQ+hhtOZI7g2DrDe+5+aoq1MtS6EVEbNy3c3otU+T88OX3SKM0wIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7brGG6RZkUFO+b4SyMSAbhPIZOjZm3dcE55fyh00a9ogm57iRYUdMZqs/9fdUvvxe9RjwFe0PfTm8408MmiH9P034jBD6EOOSPk5kSZrxJxg9QQgmd4FGz7zhCiBd9nEhWKesJK9/QGeR7tIomVjS2QGj8LsKIDvDBLG+2UZ88gkETuuRbFV0j82yOG9Ubq57+B49eQ+vZCZhms/eWI9geFZT9H+PpdvYBPbfm7Js3No6cSIO3YCqlK0edT6dwW6PeNYTBU23nsCaibtO1BqSnD89dOxnI/+GwUm2CFOLwLtUlkz40PDzgpMEWgsCo67H4A2ZzOKd59SzjL/9ujwlQIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn0gzrT8olsDnBimVR5qfm2PaDurY1iNvQg8RcGJjLF+qqXuiJUP2YbH/e74rMSHBCWAEtAYOYJUZAgNz0koj3mNAMLHLsWvsLzYvdNPS/q2sm9LSTDtTzin42bQMGbQ5oGTK1jUuYs+qnttzv1IV3KgrA4E3yprh0wzXegFxian2vNaL1XB2YsbarBZw+ltvMg76goI372ILul49W7xTA5ZcT/w1NVtmy++razbFiiobLXwEbXR16SikVQaRILgBIAMZoYgtPAhtSkGaYjJPq5FN29XUtWoBUl/wyAuSE1MH+rYvTuWPLxXAdTWxsSaHgGMDQWbSQxnvC4e5BavBZQIDAQAB"], "end_time": 1746454319}'
+
+1746454289.3001416: Election already exists: test_election
+
+1746454289.3837202: Message from node: b'\x00X\x00\x03\x00\x00\x00\x01\x00\x00\x11\xeb\xa8\x89\x92\x8a\xf6E\x92\xd5\x95\xd1\xf4`+\r)&\xd7\x92QD\xfe\xad\xba\xcb%\xf1\x03\xb8&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x0f\x00\x00\x00\x08\x00\x06\x87\x83{}'
+
+1746454289.3993108: Message from node: b'\x00X\x00\x03\x00\x00\x00\x01\x00\x00\x11\xeb\xa8\x89\x92\x8a\xf6E\x92\xd5\x95\xd1\xf4`+\r)&\xd7\x92QD\xfe\xad\xba\xcb%\xf1\x03\xb8&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x0f\x00\x00\x00\x08\x00\x06\x87\x83{}'
+
+1746454289.425477: Block message received: b'\x00\x03\x00\x00\x00\x01\x00\x00\x11\xeb\xa8\x89\x92\x8a\xf6E\x92\xd5\x95\xd1\xf4`+\r)&\xd7\x92QD\xfe\xad\xba\xcb%\xf1\x03\xb8&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x0f\x00\x00\x00\x08\x00\x06\x87\x83{}'
+
+1746454289.4517152: Block message received: b'\x00\x03\x00\x00\x00\x01\x00\x00\x11\xeb\xa8\x89\x92\x8a\xf6E\x92\xd5\x95\xd1\xf4`+\r)&\xd7\x92QD\xfe\xad\xba\xcb%\xf1\x03\xb8&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x0f\x00\x00\x00\x08\x00\x06\x87\x83{}'
+
+1746454289.4673672: Block verified: <block.Block object at 0x7f66b826b9d0>
+
+1746454289.4883468: Chain extended: <block.Block object at 0x7f66b826b9d0>
+
+1746454289.573416: Duplicate block received: b'\x00\x00\x00\x01\x00\x00\x11\xeb\xa8\x89\x92\x8a\xf6E\x92\xd5\x95\xd1\xf4`+\r)&\xd7\x92QD\xfe\xad\xba\xcb%\xf1\x03\xb8&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x0f\x00\x00\x00\x08\x00\x06\x87\x83{}'
+
+1746454289.7749324: Duplicate block received: b'\x00\x00\x00\x01\x00\x00\x11\xeb\xa8\x89\x92\x8a\xf6E\x92\xd5\x95\xd1\xf4`+\r)&\xd7\x92QD\xfe\xad\xba\xcb%\xf1\x03\xb8&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x0f\x00\x00\x00\x08\x00\x06\x87\x83{}'
+
+1746454289.78542: Objects to be included in block: [<election.Election object at 0x7f66b826b970>]
+
+1746454289.7915046: Mining block 2 with nonce 0
+1746454290.236032: Message from node: b'\x03e\x00\x02{"type": "vote", "election_hash": "rLmtWsCO92WJH1MUcsyy+Nz9BQIKzXqx/qUZfgjOCyk=", "choice": "A", "public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3rcoqx6a+N7vfeyyoY5PdhtE4up0xJCz6oa3dgRLspvXktM9SxTizHNyDJkj1wHAWIZ9vwZOserSa4BVCgWqEq9EQr9j2X9mCUBXtm++5Z+UdqeR5JZogtDugaJPAlP1b6RpDNj1Sxb7ctUQq2bNYGgf/UepUjZYOzjst8j70Jv6A+hL0g5VPiuyiGoKkQuSLXPJ2UJykGNc5XAaK8983PMX6eQPg4HvqFNTvxL7jwyhF0ku7rKc0FBb7SwWq/ToGMV4KH/ZtT/DCf/fdYiD3bh5XDqTfknw5qNQ+hhtOZI7g2DrDe+5+aoq1MtS6EVEbNy3c3otU+T88OX3SKM0wIDAQAB", "signature": "FKaWgGc3+wBrZuZ3J/G1ED26kdRTzu5n/OaLq0SUo4QDGQsgA/3mK/zK70WZZpbmKE6tJuH6fHKXdvDuPahAQKymRcdjBQJf1PBHEm8DSjpwDt1VUjczgV+X8/mkVNNhy9MQbWvsv0vipRWTXs7pHaUi8tm4u0VOscr/wWS9B0Qz6GNFC2MUmmf2Xfvk22WLjTQ74xFPqXgLj3Udem+hdL4MG1VEXldvHJmCTyZH+u+yBDm6BHoswTmja4GOo8w5hY4I466qnhkz5rjeHPEzHNwb50Ux6XTSu/2xwXVxcRYvKfsyqiWR1HuhkiiUkCzQq65tLtZfQibSDw9ARJv5jA=="}\x03e\x00\x02{"type": "vote", "election_hash": "rLmtWsCO92WJH1MUcsyy+Nz9BQIKzXqx/qUZfgjOCyk=", "choice": "A", "public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7brGG6RZkUFO+b4SyMSAbhPIZOjZm3dcE55fyh00a9ogm57iRYUdMZqs/9fdUvvxe9RjwFe0PfTm8408MmiH9P034jBD6EOOSPk5kSZrxJxg9QQgmd4FGz7zhCiBd9nEhWKesJK9/QGeR7tIomVjS2QGj8LsKIDvDBLG+2UZ88gkETuuRbFV0j82yOG9Ubq57+B49eQ+vZCZhms/eWI9geFZT9H+PpdvYBPbfm7Js3No6cSIO3YCqlK0edT6dwW6PeNYTBU23nsCaibtO1BqSnD89dOxnI/+GwUm2CFOLwLtUlkz40PDzgpMEWgsCo67H4A2ZzOKd59SzjL/9ujwlQIDAQAB", "signature": "bw5qFiaEUDoU1QwxR/5PY6qreoMoBXr9/1TcqMq9ViAL0TM7Ypwwo2qLQuefLeqbwLY+bk0wtZ2CuZy5NXPPuhAX9Hq+Ur3R6rCk2G9+bqUpApQVFNQ9qB5upF4Py4frEfLMjVO9dO5Ejoezt5hjps7hdOfDNjvorv3jyCy46VKHatVETFgNkjG2GggA5PmiKg1e5TQtqGuFtB1ipmT8rw454IONsTbFJ5iFrzbIJQvwxDk/ewEvKMyRqybHNPpPbou1XHwtketnjQtoaIGddaFllW/QyAWxPbqOVul7qawHGcdPeCkj88hQ4/9DvYt95936qhkhZZHKS6XrTp2ihA=="}'
+
+1746454290.2744672: Vote message received: <vote.Vote object at 0x7f66b826b940>
+
+1746454290.7673135: Message from node: b'\x03e\x00\x02{"type": "vote", "election_hash": "rLmtWsCO92WJH1MUcsyy+Nz9BQIKzXqx/qUZfgjOCyk=", "choice": "A", "public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3rcoqx6a+N7vfeyyoY5PdhtE4up0xJCz6oa3dgRLspvXktM9SxTizHNyDJkj1wHAWIZ9vwZOserSa4BVCgWqEq9EQr9j2X9mCUBXtm++5Z+UdqeR5JZogtDugaJPAlP1b6RpDNj1Sxb7ctUQq2bNYGgf/UepUjZYOzjst8j70Jv6A+hL0g5VPiuyiGoKkQuSLXPJ2UJykGNc5XAaK8983PMX6eQPg4HvqFNTvxL7jwyhF0ku7rKc0FBb7SwWq/ToGMV4KH/ZtT/DCf/fdYiD3bh5XDqTfknw5qNQ+hhtOZI7g2DrDe+5+aoq1MtS6EVEbNy3c3otU+T88OX3SKM0wIDAQAB", "signature": "FKaWgGc3+wBrZuZ3J/G1ED26kdRTzu5n/OaLq0SUo4QDGQsgA/3mK/zK70WZZpbmKE6tJuH6fHKXdvDuPahAQKymRcdjBQJf1PBHEm8DSjpwDt1VUjczgV+X8/mkVNNhy9MQbWvsv0vipRWTXs7pHaUi8tm4u0VOscr/wWS9B0Qz6GNFC2MUmmf2Xfvk22WLjTQ74xFPqXgLj3Udem+hdL4MG1VEXldvHJmCTyZH+u+yBDm6BHoswTmja4GOo8w5hY4I466qnhkz5rjeHPEzHNwb50Ux6XTSu/2xwXVxcRYvKfsyqiWR1HuhkiiUkCzQq65tLtZfQibSDw9ARJv5jA=="}'
+
+1746454290.7675457: Vote message received: <vote.Vote object at 0x7f66b8048910>
+
+1746454291.3009028: Vote message received: <vote.Vote object at 0x7f66b826bac0>
+
+1746454291.3010116: Vote from used public key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3rcoqx6a+N7vfeyyoY5PdhtE4up0xJCz6oa3dgRLspvXktM9SxTizHNyDJkj1wHAWIZ9vwZOserSa4BVCgWqEq9EQr9j2X9mCUBXtm++5Z+UdqeR5JZogtDugaJPAlP1b6RpDNj1Sxb7ctUQq2bNYGgf/UepUjZYOzjst8j70Jv6A+hL0g5VPiuyiGoKkQuSLXPJ2UJykGNc5XAaK8983PMX6eQPg4HvqFNTvxL7jwyhF0ku7rKc0FBb7SwWq/ToGMV4KH/ZtT/DCf/fdYiD3bh5XDqTfknw5qNQ+hhtOZI7g2DrDe+5+aoq1MtS6EVEbNy3c3otU+T88OX3SKM0wIDAQAB
+
+1746454291.301053: Vote failed: False
+
+1746454291.3011305: Message from node: b'\x05s\x00\x03\x00\x00\x00\x02\x00\x00\x1aW\x82-\xc2e\xa8u\x85r\x11\xe2\x8a\x8fl\x87\x1b\x10\xc85\xdfwo\xa6\xfc\x17\xaa\xf0\xd8\xfe\x19`\xcf\xed\xa8Q\xa8\xa3\x83\x0e2\x81\xd0\xe4^\x10*z\x08\x94\xdc\xeb3s\xf7\x05\xec^h\x13\x07\xb1\x00\x00\x00\x00h\x18\xc7\x11\x00\x00\x00\t\x00\x04-\x9b{"0": {"type": "election", "name": "test_election", "choices": ["A", "B", "C"], "public_keys": ["MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3rcoqx6a+N7vfeyyoY5PdhtE4up0xJCz6oa3dgRLspvXktM9SxTizHNyDJkj1wHAWIZ9vwZOserSa4BVCgWqEq9EQr9j2X9mCUBXtm++5Z+UdqeR5JZogtDugaJPAlP1b6RpDNj1Sxb7ctUQq2bNYGgf/UepUjZYOzjst8j70Jv6A+hL0g5VPiuyiGoKkQuSLXPJ2UJykGNc5XAaK8983PMX6eQPg4HvqFNTvxL7jwyhF0ku7rKc0FBb7SwWq/ToGMV4KH/ZtT/DCf/fdYiD3bh5XDqTfknw5qNQ+hhtOZI7g2DrDe+5+aoq1MtS6EVEbNy3c3otU+T88OX3SKM0wIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7brGG6RZkUFO+b4SyMSAbhPIZOjZm3dcE55fyh00a9ogm57iRYUdMZqs/9fdUvvxe9RjwFe0PfTm8408MmiH9P034jBD6EOOSPk5kSZrxJxg9QQgmd4FGz7zhCiBd9nEhWKesJK9/QGeR7tIomVjS2QGj8LsKIDvDBLG+2UZ88gkETuuRbFV0j82yOG9Ubq57+B49eQ+vZCZhms/eWI9geFZT9H+PpdvYBPbfm7Js3No6cSIO3YCqlK0edT6dwW6PeNYTBU23nsCaibtO1BqSnD89dOxnI/+GwUm2CFOLwLtUlkz40PDzgpMEWgsCo67H4A2ZzOKd59SzjL/9ujwlQIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn0gzrT8olsDnBimVR5qfm2PaDurY1iNvQg8RcGJjLF+qqXuiJUP2YbH/e74rMSHBCWAEtAYOYJUZAgNz0koj3mNAMLHLsWvsLzYvdNPS/q2sm9LSTDtTzin42bQMGbQ5oGTK1jUuYs+qnttzv1IV3KgrA4E3yprh0wzXegFxian2vNaL1XB2YsbarBZw+ltvMg76goI372ILul49W7xTA5ZcT/w1NVtmy++razbFiiobLXwEbXR16SikVQaRILgBIAMZoYgtPAhtSkGaYjJPq5FN29XUtWoBUl/wyAuSE1MH+rYvTuWPLxXAdTWxsSaHgGMDQWbSQxnvC4e5BavBZQIDAQAB"], "end_time": 1746454319}}\x03e\x00\x02{"type": "vote", "election_hash": "rLmtWsCO92WJH1MUcsyy+Nz9BQIKzXqx/qUZfgjOCyk=", "choice": "A", "public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7brGG6RZkUFO+b4SyMSAbhPIZOjZm3dcE55fyh00a9ogm57iRYUdMZqs/9fdUvvxe9RjwFe0PfTm8408MmiH9P034jBD6EOOSPk5kSZrxJxg9QQgmd4FGz7zhCiBd9nEhWKesJK9/QGeR7tIomVjS2QGj8LsKIDvDBLG+2UZ88gkETuuRbFV0j82yOG9Ubq57+B49eQ+vZCZhms/eWI9geFZT9H+PpdvYBPbfm7Js3No6cSIO3YCqlK0edT6dwW6PeNYTBU23nsCaibtO1BqSnD89dOxnI/+GwUm2CFOLwLtUlkz40PDzgpMEWgsCo67H4A2ZzOKd59SzjL/9ujwlQIDAQAB", "signature": "bw5qFiaEUDoU1QwxR/5PY6qreoMoBXr9/1TcqMq9ViAL0TM7Ypwwo2qLQuefLeqbwLY+bk0wtZ2CuZy5NXPPuhAX9Hq+Ur3R6rCk2G9+bqUpApQVFNQ9qB5upF4Py4frEfLMjVO9dO5Ejoezt5hjps7hdOfDNjvorv3jyCy46VKHatVETFgNkjG2GggA5PmiKg1e5TQtqGuFtB1ipmT8rw454IONsTbFJ5iFrzbIJQvwxDk/ewEvKMyRqybHNPpPbou1XHwtketnjQtoaIGddaFllW/QyAWxPbqOVul7qawHGcdPeCkj88hQ4/9DvYt95936qhkhZZHKS6XrTp2ihA=="}'
+
+1746454291.3020957: Block verified: <block.Block object at 0x7f66b826ba00>
+
+1746454291.30231: Chain extended: <block.Block object at 0x7f66b826ba00>
+
+1746454291.302614: Block message received: b'\x00\x03\x00\x00\x00\x02\x00\x00\x1aW\x82-\xc2e\xa8u\x85r\x11\xe2\x8a\x8fl\x87\x1b\x10\xc85\xdfwo\xa6\xfc\x17\xaa\xf0\xd8\xfe\x19`\xcf\xed\xa8Q\xa8\xa3\x83\x0e2\x81\xd0\xe4^\x10*z\x08\x94\xdc\xeb3s\xf7\x05\xec^h\x13\x07\xb1\x00\x00\x00\x00h\x18\xc7\x11\x00\x00\x00\t\x00\x04-\x9b{"0": {"type": "election", "name": "test_election", "choices": ["A", "B", "C"], "public_keys": ["MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3rcoqx6a+N7vfeyyoY5PdhtE4up0xJCz6oa3dgRLspvXktM9SxTizHNyDJkj1wHAWIZ9vwZOserSa4BVCgWqEq9EQr9j2X9mCUBXtm++5Z+UdqeR5JZogtDugaJPAlP1b6RpDNj1Sxb7ctUQq2bNYGgf/UepUjZYOzjst8j70Jv6A+hL0g5VPiuyiGoKkQuSLXPJ2UJykGNc5XAaK8983PMX6eQPg4HvqFNTvxL7jwyhF0ku7rKc0FBb7SwWq/ToGMV4KH/ZtT/DCf/fdYiD3bh5XDqTfknw5qNQ+hhtOZI7g2DrDe+5+aoq1MtS6EVEbNy3c3otU+T88OX3SKM0wIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7brGG6RZkUFO+b4SyMSAbhPIZOjZm3dcE55fyh00a9ogm57iRYUdMZqs/9fdUvvxe9RjwFe0PfTm8408MmiH9P034jBD6EOOSPk5kSZrxJxg9QQgmd4FGz7zhCiBd9nEhWKesJK9/QGeR7tIomVjS2QGj8LsKIDvDBLG+2UZ88gkETuuRbFV0j82yOG9Ubq57+B49eQ+vZCZhms/eWI9geFZT9H+PpdvYBPbfm7Js3No6cSIO3YCqlK0edT6dwW6PeNYTBU23nsCaibtO1BqSnD89dOxnI/+GwUm2CFOLwLtUlkz40PDzgpMEWgsCo67H4A2ZzOKd59SzjL/9ujwlQIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn0gzrT8olsDnBimVR5qfm2PaDurY1iNvQg8RcGJjLF+qqXuiJUP2YbH/e74rMSHBCWAEtAYOYJUZAgNz0koj3mNAMLHLsWvsLzYvdNPS/q2sm9LSTDtTzin42bQMGbQ5oGTK1jUuYs+qnttzv1IV3KgrA4E3yprh0wzXegFxian2vNaL1XB2YsbarBZw+ltvMg76goI372ILul49W7xTA5ZcT/w1NVtmy++razbFiiobLXwEbXR16SikVQaRILgBIAMZoYgtPAhtSkGaYjJPq5FN29XUtWoBUl/wyAuSE1MH+rYvTuWPLxXAdTWxsSaHgGMDQWbSQxnvC4e5BavBZQIDAQAB"], "end_time": 1746454319}}'
+
+1746454291.3130631: Objects to be included in block: [<vote.Vote object at 0x7f66b826b940>]
+
+1746454291.3188767: Mining block 3 with nonce 0
+1746454291.4433935: Duplicate block received: b'\x00\x00\x00\x02\x00\x00\x1aW\x82-\xc2e\xa8u\x85r\x11\xe2\x8a\x8fl\x87\x1b\x10\xc85\xdfwo\xa6\xfc\x17\xaa\xf0\xd8\xfe\x19`\xcf\xed\xa8Q\xa8\xa3\x83\x0e2\x81\xd0\xe4^\x10*z\x08\x94\xdc\xeb3s\xf7\x05\xec^h\x13\x07\xb1\x00\x00\x00\x00h\x18\xc7\x11\x00\x00\x00\t\x00\x04-\x9b{"0": {"type": "election", "name": "test_election", "choices": ["A", "B", "C"], "public_keys": ["MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3rcoqx6a+N7vfeyyoY5PdhtE4up0xJCz6oa3dgRLspvXktM9SxTizHNyDJkj1wHAWIZ9vwZOserSa4BVCgWqEq9EQr9j2X9mCUBXtm++5Z+UdqeR5JZogtDugaJPAlP1b6RpDNj1Sxb7ctUQq2bNYGgf/UepUjZYOzjst8j70Jv6A+hL0g5VPiuyiGoKkQuSLXPJ2UJykGNc5XAaK8983PMX6eQPg4HvqFNTvxL7jwyhF0ku7rKc0FBb7SwWq/ToGMV4KH/ZtT/DCf/fdYiD3bh5XDqTfknw5qNQ+hhtOZI7g2DrDe+5+aoq1MtS6EVEbNy3c3otU+T88OX3SKM0wIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7brGG6RZkUFO+b4SyMSAbhPIZOjZm3dcE55fyh00a9ogm57iRYUdMZqs/9fdUvvxe9RjwFe0PfTm8408MmiH9P034jBD6EOOSPk5kSZrxJxg9QQgmd4FGz7zhCiBd9nEhWKesJK9/QGeR7tIomVjS2QGj8LsKIDvDBLG+2UZ88gkETuuRbFV0j82yOG9Ubq57+B49eQ+vZCZhms/eWI9geFZT9H+PpdvYBPbfm7Js3No6cSIO3YCqlK0edT6dwW6PeNYTBU23nsCaibtO1BqSnD89dOxnI/+GwUm2CFOLwLtUlkz40PDzgpMEWgsCo67H4A2ZzOKd59SzjL/9ujwlQIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn0gzrT8olsDnBimVR5qfm2PaDurY1iNvQg8RcGJjLF+qqXuiJUP2YbH/e74rMSHBCWAEtAYOYJUZAgNz0koj3mNAMLHLsWvsLzYvdNPS/q2sm9LSTDtTzin42bQMGbQ5oGTK1jUuYs+qnttzv1IV3KgrA4E3yprh0wzXegFxian2vNaL1XB2YsbarBZw+ltvMg76goI372ILul49W7xTA5ZcT/w1NVtmy++razbFiiobLXwEbXR16SikVQaRILgBIAMZoYgtPAhtSkGaYjJPq5FN29XUtWoBUl/wyAuSE1MH+rYvTuWPLxXAdTWxsSaHgGMDQWbSQxnvC4e5BavBZQIDAQAB"], "end_time": 1746454319}}'
+
+1746454291.4439282: Message from node: b'\x05s\x00\x03\x00\x00\x00\x02\x00\x00\x1aW\x82-\xc2e\xa8u\x85r\x11\xe2\x8a\x8fl\x87\x1b\x10\xc85\xdfwo\xa6\xfc\x17\xaa\xf0\xd8\xfe\x19`\xcf\xed\xa8Q\xa8\xa3\x83\x0e2\x81\xd0\xe4^\x10*z\x08\x94\xdc\xeb3s\xf7\x05\xec^h\x13\x07\xb1\x00\x00\x00\x00h\x18\xc7\x11\x00\x00\x00\t\x00\x04-\x9b{"0": {"type": "election", "name": "test_election", "choices": ["A", "B", "C"], "public_keys": ["MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3rcoqx6a+N7vfeyyoY5PdhtE4up0xJCz6oa3dgRLspvXktM9SxTizHNyDJkj1wHAWIZ9vwZOserSa4BVCgWqEq9EQr9j2X9mCUBXtm++5Z+UdqeR5JZogtDugaJPAlP1b6RpDNj1Sxb7ctUQq2bNYGgf/UepUjZYOzjst8j70Jv6A+hL0g5VPiuyiGoKkQuSLXPJ2UJykGNc5XAaK8983PMX6eQPg4HvqFNTvxL7jwyhF0ku7rKc0FBb7SwWq/ToGMV4KH/ZtT/DCf/fdYiD3bh5XDqTfknw5qNQ+hhtOZI7g2DrDe+5+aoq1MtS6EVEbNy3c3otU+T88OX3SKM0wIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7brGG6RZkUFO+b4SyMSAbhPIZOjZm3dcE55fyh00a9ogm57iRYUdMZqs/9fdUvvxe9RjwFe0PfTm8408MmiH9P034jBD6EOOSPk5kSZrxJxg9QQgmd4FGz7zhCiBd9nEhWKesJK9/QGeR7tIomVjS2QGj8LsKIDvDBLG+2UZ88gkETuuRbFV0j82yOG9Ubq57+B49eQ+vZCZhms/eWI9geFZT9H+PpdvYBPbfm7Js3No6cSIO3YCqlK0edT6dwW6PeNYTBU23nsCaibtO1BqSnD89dOxnI/+GwUm2CFOLwLtUlkz40PDzgpMEWgsCo67H4A2ZzOKd59SzjL/9ujwlQIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn0gzrT8olsDnBimVR5qfm2PaDurY1iNvQg8RcGJjLF+qqXuiJUP2YbH/e74rMSHBCWAEtAYOYJUZAgNz0koj3mNAMLHLsWvsLzYvdNPS/q2sm9LSTDtTzin42bQMGbQ5oGTK1jUuYs+qnttzv1IV3KgrA4E3yprh0wzXegFxian2vNaL1XB2YsbarBZw+ltvMg76goI372ILul49W7xTA5ZcT/w1NVtmy++razbFiiobLXwEbXR16SikVQaRILgBIAMZoYgtPAhtSkGaYjJPq5FN29XUtWoBUl/wyAuSE1MH+rYvTuWPLxXAdTWxsSaHgGMDQWbSQxnvC4e5BavBZQIDAQAB"], "end_time": 1746454319}}'
+
+1746454291.4441016: Vote message received: <vote.Vote object at 0x7f66b7fc0d60>
+
+1746454291.483013: Block message received: b'\x00\x03\x00\x00\x00\x02\x00\x00\x1aW\x82-\xc2e\xa8u\x85r\x11\xe2\x8a\x8fl\x87\x1b\x10\xc85\xdfwo\xa6\xfc\x17\xaa\xf0\xd8\xfe\x19`\xcf\xed\xa8Q\xa8\xa3\x83\x0e2\x81\xd0\xe4^\x10*z\x08\x94\xdc\xeb3s\xf7\x05\xec^h\x13\x07\xb1\x00\x00\x00\x00h\x18\xc7\x11\x00\x00\x00\t\x00\x04-\x9b{"0": {"type": "election", "name": "test_election", "choices": ["A", "B", "C"], "public_keys": ["MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3rcoqx6a+N7vfeyyoY5PdhtE4up0xJCz6oa3dgRLspvXktM9SxTizHNyDJkj1wHAWIZ9vwZOserSa4BVCgWqEq9EQr9j2X9mCUBXtm++5Z+UdqeR5JZogtDugaJPAlP1b6RpDNj1Sxb7ctUQq2bNYGgf/UepUjZYOzjst8j70Jv6A+hL0g5VPiuyiGoKkQuSLXPJ2UJykGNc5XAaK8983PMX6eQPg4HvqFNTvxL7jwyhF0ku7rKc0FBb7SwWq/ToGMV4KH/ZtT/DCf/fdYiD3bh5XDqTfknw5qNQ+hhtOZI7g2DrDe+5+aoq1MtS6EVEbNy3c3otU+T88OX3SKM0wIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7brGG6RZkUFO+b4SyMSAbhPIZOjZm3dcE55fyh00a9ogm57iRYUdMZqs/9fdUvvxe9RjwFe0PfTm8408MmiH9P034jBD6EOOSPk5kSZrxJxg9QQgmd4FGz7zhCiBd9nEhWKesJK9/QGeR7tIomVjS2QGj8LsKIDvDBLG+2UZ88gkETuuRbFV0j82yOG9Ubq57+B49eQ+vZCZhms/eWI9geFZT9H+PpdvYBPbfm7Js3No6cSIO3YCqlK0edT6dwW6PeNYTBU23nsCaibtO1BqSnD89dOxnI/+GwUm2CFOLwLtUlkz40PDzgpMEWgsCo67H4A2ZzOKd59SzjL/9ujwlQIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn0gzrT8olsDnBimVR5qfm2PaDurY1iNvQg8RcGJjLF+qqXuiJUP2YbH/e74rMSHBCWAEtAYOYJUZAgNz0koj3mNAMLHLsWvsLzYvdNPS/q2sm9LSTDtTzin42bQMGbQ5oGTK1jUuYs+qnttzv1IV3KgrA4E3yprh0wzXegFxian2vNaL1XB2YsbarBZw+ltvMg76goI372ILul49W7xTA5ZcT/w1NVtmy++razbFiiobLXwEbXR16SikVQaRILgBIAMZoYgtPAhtSkGaYjJPq5FN29XUtWoBUl/wyAuSE1MH+rYvTuWPLxXAdTWxsSaHgGMDQWbSQxnvC4e5BavBZQIDAQAB"], "end_time": 1746454319}}'
+
+1746454291.4995859: Vote from used public key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7brGG6RZkUFO+b4SyMSAbhPIZOjZm3dcE55fyh00a9ogm57iRYUdMZqs/9fdUvvxe9RjwFe0PfTm8408MmiH9P034jBD6EOOSPk5kSZrxJxg9QQgmd4FGz7zhCiBd9nEhWKesJK9/QGeR7tIomVjS2QGj8LsKIDvDBLG+2UZ88gkETuuRbFV0j82yOG9Ubq57+B49eQ+vZCZhms/eWI9geFZT9H+PpdvYBPbfm7Js3No6cSIO3YCqlK0edT6dwW6PeNYTBU23nsCaibtO1BqSnD89dOxnI/+GwUm2CFOLwLtUlkz40PDzgpMEWgsCo67H4A2ZzOKd59SzjL/9ujwlQIDAQAB
+
+1746454291.5049512: Vote failed: False
+
+1746454291.5158443: Duplicate block received: b'\x00\x00\x00\x02\x00\x00\x1aW\x82-\xc2e\xa8u\x85r\x11\xe2\x8a\x8fl\x87\x1b\x10\xc85\xdfwo\xa6\xfc\x17\xaa\xf0\xd8\xfe\x19`\xcf\xed\xa8Q\xa8\xa3\x83\x0e2\x81\xd0\xe4^\x10*z\x08\x94\xdc\xeb3s\xf7\x05\xec^h\x13\x07\xb1\x00\x00\x00\x00h\x18\xc7\x11\x00\x00\x00\t\x00\x04-\x9b{"0": {"type": "election", "name": "test_election", "choices": ["A", "B", "C"], "public_keys": ["MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3rcoqx6a+N7vfeyyoY5PdhtE4up0xJCz6oa3dgRLspvXktM9SxTizHNyDJkj1wHAWIZ9vwZOserSa4BVCgWqEq9EQr9j2X9mCUBXtm++5Z+UdqeR5JZogtDugaJPAlP1b6RpDNj1Sxb7ctUQq2bNYGgf/UepUjZYOzjst8j70Jv6A+hL0g5VPiuyiGoKkQuSLXPJ2UJykGNc5XAaK8983PMX6eQPg4HvqFNTvxL7jwyhF0ku7rKc0FBb7SwWq/ToGMV4KH/ZtT/DCf/fdYiD3bh5XDqTfknw5qNQ+hhtOZI7g2DrDe+5+aoq1MtS6EVEbNy3c3otU+T88OX3SKM0wIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7brGG6RZkUFO+b4SyMSAbhPIZOjZm3dcE55fyh00a9ogm57iRYUdMZqs/9fdUvvxe9RjwFe0PfTm8408MmiH9P034jBD6EOOSPk5kSZrxJxg9QQgmd4FGz7zhCiBd9nEhWKesJK9/QGeR7tIomVjS2QGj8LsKIDvDBLG+2UZ88gkETuuRbFV0j82yOG9Ubq57+B49eQ+vZCZhms/eWI9geFZT9H+PpdvYBPbfm7Js3No6cSIO3YCqlK0edT6dwW6PeNYTBU23nsCaibtO1BqSnD89dOxnI/+GwUm2CFOLwLtUlkz40PDzgpMEWgsCo67H4A2ZzOKd59SzjL/9ujwlQIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn0gzrT8olsDnBimVR5qfm2PaDurY1iNvQg8RcGJjLF+qqXuiJUP2YbH/e74rMSHBCWAEtAYOYJUZAgNz0koj3mNAMLHLsWvsLzYvdNPS/q2sm9LSTDtTzin42bQMGbQ5oGTK1jUuYs+qnttzv1IV3KgrA4E3yprh0wzXegFxian2vNaL1XB2YsbarBZw+ltvMg76goI372ILul49W7xTA5ZcT/w1NVtmy++razbFiiobLXwEbXR16SikVQaRILgBIAMZoYgtPAhtSkGaYjJPq5FN29XUtWoBUl/wyAuSE1MH+rYvTuWPLxXAdTWxsSaHgGMDQWbSQxnvC4e5BavBZQIDAQAB"], "end_time": 1746454319}}'
+
+1746454293.592463: {}
+1746454293.6766424: Block verified: <block.Block object at 0x7f66b826bc70>
+
+1746454293.6820076: Chain extended: <block.Block object at 0x7f66b826bc70>
+
+1746454293.708334: Objects to be included in block: [<vote.Vote object at 0x7f66b826bac0>]
+
+1746454293.7141101: Mining block 4 with nonce 0
+1746454294.024027: Message from node: b'\x03\xc0\x00\x03\x00\x00\x00\x03\x00\x00\x03\xa5S\xa6\x12\x99\xcf:\xa73\x90\xedu\xf5\x1fY\x87cG\xd52P\x1d\xb9&\xa8I\x96+\x9c\x14\xe1\xc9\xf4\x99\xb2\xf5\xc7\x00\x1f\x03\xd8\xcb\x8e\x0e\xfar\xa39"/\xeeX\xf9\x1a\xfd\xc8\xb1E\xe7\x1cD\x00\x00\x00\x00h\x18\xc7\x13\x00\x00\x00\n\x00\x07\x11\xc8{"0": {"type": "vote", "election_hash": "rLmtWsCO92WJH1MUcsyy+Nz9BQIKzXqx/qUZfgjOCyk=", "choice": "A", "public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3rcoqx6a+N7vfeyyoY5PdhtE4up0xJCz6oa3dgRLspvXktM9SxTizHNyDJkj1wHAWIZ9vwZOserSa4BVCgWqEq9EQr9j2X9mCUBXtm++5Z+UdqeR5JZogtDugaJPAlP1b6RpDNj1Sxb7ctUQq2bNYGgf/UepUjZYOzjst8j70Jv6A+hL0g5VPiuyiGoKkQuSLXPJ2UJykGNc5XAaK8983PMX6eQPg4HvqFNTvxL7jwyhF0ku7rKc0FBb7SwWq/ToGMV4KH/ZtT/DCf/fdYiD3bh5XDqTfknw5qNQ+hhtOZI7g2DrDe+5+aoq1MtS6EVEbNy3c3otU+T88OX3SKM0wIDAQAB", "signature": "FKaWgGc3+wBrZuZ3J/G1ED26kdRTzu5n/OaLq0SUo4QDGQsgA/3mK/zK70WZZpbmKE6tJuH6fHKXdvDuPahAQKymRcdjBQJf1PBHEm8DSjpwDt1VUjczgV+X8/mkVNNhy9MQbWvsv0vipRWTXs7pHaUi8tm4u0VOscr/wWS9B0Qz6GNFC2MUmmf2Xfvk22WLjTQ74xFPqXgLj3Udem+hdL4MG1VEXldvHJmCTyZH+u+yBDm6BHoswTmja4GOo8w5hY4I466qnhkz5rjeHPEzHNwb50Ux6XTSu/2xwXVxcRYvKfsyqiWR1HuhkiiUkCzQq65tLtZfQibSDw9ARJv5jA=="}}'
+
+1746454294.039839: Block message received: b'\x00\x03\x00\x00\x00\x03\x00\x00\x03\xa5S\xa6\x12\x99\xcf:\xa73\x90\xedu\xf5\x1fY\x87cG\xd52P\x1d\xb9&\xa8I\x96+\x9c\x14\xe1\xc9\xf4\x99\xb2\xf5\xc7\x00\x1f\x03\xd8\xcb\x8e\x0e\xfar\xa39"/\xeeX\xf9\x1a\xfd\xc8\xb1E\xe7\x1cD\x00\x00\x00\x00h\x18\xc7\x13\x00\x00\x00\n\x00\x07\x11\xc8{"0": {"type": "vote", "election_hash": "rLmtWsCO92WJH1MUcsyy+Nz9BQIKzXqx/qUZfgjOCyk=", "choice": "A", "public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3rcoqx6a+N7vfeyyoY5PdhtE4up0xJCz6oa3dgRLspvXktM9SxTizHNyDJkj1wHAWIZ9vwZOserSa4BVCgWqEq9EQr9j2X9mCUBXtm++5Z+UdqeR5JZogtDugaJPAlP1b6RpDNj1Sxb7ctUQq2bNYGgf/UepUjZYOzjst8j70Jv6A+hL0g5VPiuyiGoKkQuSLXPJ2UJykGNc5XAaK8983PMX6eQPg4HvqFNTvxL7jwyhF0ku7rKc0FBb7SwWq/ToGMV4KH/ZtT/DCf/fdYiD3bh5XDqTfknw5qNQ+hhtOZI7g2DrDe+5+aoq1MtS6EVEbNy3c3otU+T88OX3SKM0wIDAQAB", "signature": "FKaWgGc3+wBrZuZ3J/G1ED26kdRTzu5n/OaLq0SUo4QDGQsgA/3mK/zK70WZZpbmKE6tJuH6fHKXdvDuPahAQKymRcdjBQJf1PBHEm8DSjpwDt1VUjczgV+X8/mkVNNhy9MQbWvsv0vipRWTXs7pHaUi8tm4u0VOscr/wWS9B0Qz6GNFC2MUmmf2Xfvk22WLjTQ74xFPqXgLj3Udem+hdL4MG1VEXldvHJmCTyZH+u+yBDm6BHoswTmja4GOo8w5hY4I466qnhkz5rjeHPEzHNwb50Ux6XTSu/2xwXVxcRYvKfsyqiWR1HuhkiiUkCzQq65tLtZfQibSDw9ARJv5jA=="}}'
+
+1746454294.0555274: Duplicate block received: b'\x00\x00\x00\x03\x00\x00\x03\xa5S\xa6\x12\x99\xcf:\xa73\x90\xedu\xf5\x1fY\x87cG\xd52P\x1d\xb9&\xa8I\x96+\x9c\x14\xe1\xc9\xf4\x99\xb2\xf5\xc7\x00\x1f\x03\xd8\xcb\x8e\x0e\xfar\xa39"/\xeeX\xf9\x1a\xfd\xc8\xb1E\xe7\x1cD\x00\x00\x00\x00h\x18\xc7\x13\x00\x00\x00\n\x00\x07\x11\xc8{"0": {"type": "vote", "election_hash": "rLmtWsCO92WJH1MUcsyy+Nz9BQIKzXqx/qUZfgjOCyk=", "choice": "A", "public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3rcoqx6a+N7vfeyyoY5PdhtE4up0xJCz6oa3dgRLspvXktM9SxTizHNyDJkj1wHAWIZ9vwZOserSa4BVCgWqEq9EQr9j2X9mCUBXtm++5Z+UdqeR5JZogtDugaJPAlP1b6RpDNj1Sxb7ctUQq2bNYGgf/UepUjZYOzjst8j70Jv6A+hL0g5VPiuyiGoKkQuSLXPJ2UJykGNc5XAaK8983PMX6eQPg4HvqFNTvxL7jwyhF0ku7rKc0FBb7SwWq/ToGMV4KH/ZtT/DCf/fdYiD3bh5XDqTfknw5qNQ+hhtOZI7g2DrDe+5+aoq1MtS6EVEbNy3c3otU+T88OX3SKM0wIDAQAB", "signature": "FKaWgGc3+wBrZuZ3J/G1ED26kdRTzu5n/OaLq0SUo4QDGQsgA/3mK/zK70WZZpbmKE6tJuH6fHKXdvDuPahAQKymRcdjBQJf1PBHEm8DSjpwDt1VUjczgV+X8/mkVNNhy9MQbWvsv0vipRWTXs7pHaUi8tm4u0VOscr/wWS9B0Qz6GNFC2MUmmf2Xfvk22WLjTQ74xFPqXgLj3Udem+hdL4MG1VEXldvHJmCTyZH+u+yBDm6BHoswTmja4GOo8w5hY4I466qnhkz5rjeHPEzHNwb50Ux6XTSu/2xwXVxcRYvKfsyqiWR1HuhkiiUkCzQq65tLtZfQibSDw9ARJv5jA=="}}'
+
+1746454294.5767148: {}
+1746454294.6143863: Block verified: <block.Block object at 0x7f66b826bb80>
+
+1746454294.6197345: Chain extended: <block.Block object at 0x7f66b826bb80>
+
+1746454294.6357567: Objects to be included in block: []
+
+1746454294.6413202: Mining block 5 with nonce 0
+1746454298.7649288: Mining block 5 with nonce 1000000
+1746454300.2180116: Message from node: b'\x00"\x00\x08\xac\xb9\xadZ\xc0\x8e\xf7e\x89\x1fS\x14r\xcc\xb2\xf8\xdc\xfd\x05\x02\n\xcdz\xb1\xfe\xa5\x19~\x08\xce\x0b)'
+
+1746454300.228556: Get election message received: b'\x00\x08\xac\xb9\xadZ\xc0\x8e\xf7e\x89\x1fS\x14r\xcc\xb2\xf8\xdc\xfd\x05\x02\n\xcdz\xb1\xfe\xa5\x19~\x08\xce\x0b)'
+
+1746454300.2407014: Message sent to node <node.Node object at 0x7f66b826b670>: b'\x00\t\xac\xb9\xadZ\xc0\x8e\xf7e\x89\x1fS\x14r\xcc\xb2\xf8\xdc\xfd\x05\x02\n\xcdz\xb1\xfe\xa5\x19~\x08\xce\x0b){"start": {"election": {"type": "election", "name": "test_election", "choices": ["A", "B", "C"], "public_keys": ["MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3rcoqx6a+N7vfeyyoY5PdhtE4up0xJCz6oa3dgRLspvXktM9SxTizHNyDJkj1wHAWIZ9vwZOserSa4BVCgWqEq9EQr9j2X9mCUBXtm++5Z+UdqeR5JZogtDugaJPAlP1b6RpDNj1Sxb7ctUQq2bNYGgf/UepUjZYOzjst8j70Jv6A+hL0g5VPiuyiGoKkQuSLXPJ2UJykGNc5XAaK8983PMX6eQPg4HvqFNTvxL7jwyhF0ku7rKc0FBb7SwWq/ToGMV4KH/ZtT/DCf/fdYiD3bh5XDqTfknw5qNQ+hhtOZI7g2DrDe+5+aoq1MtS6EVEbNy3c3otU+T88OX3SKM0wIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7brGG6RZkUFO+b4SyMSAbhPIZOjZm3dcE55fyh00a9ogm57iRYUdMZqs/9fdUvvxe9RjwFe0PfTm8408MmiH9P034jBD6EOOSPk5kSZrxJxg9QQgmd4FGz7zhCiBd9nEhWKesJK9/QGeR7tIomVjS2QGj8LsKIDvDBLG+2UZ88gkETuuRbFV0j82yOG9Ubq57+B49eQ+vZCZhms/eWI9geFZT9H+PpdvYBPbfm7Js3No6cSIO3YCqlK0edT6dwW6PeNYTBU23nsCaibtO1BqSnD89dOxnI/+GwUm2CFOLwLtUlkz40PDzgpMEWgsCo67H4A2ZzOKd59SzjL/9ujwlQIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn0gzrT8olsDnBimVR5qfm2PaDurY1iNvQg8RcGJjLF+qqXuiJUP2YbH/e74rMSHBCWAEtAYOYJUZAgNz0koj3mNAMLHLsWvsLzYvdNPS/q2sm9LSTDtTzin42bQMGbQ5oGTK1jUuYs+qnttzv1IV3KgrA4E3yprh0wzXegFxian2vNaL1XB2YsbarBZw+ltvMg76goI372ILul49W7xTA5ZcT/w1NVtmy++razbFiiobLXwEbXR16SikVQaRILgBIAMZoYgtPAhtSkGaYjJPq5FN29XUtWoBUl/wyAuSE1MH+rYvTuWPLxXAdTWxsSaHgGMDQWbSQxnvC4e5BavBZQIDAQAB"], "end_time": 1746454319}, "block": "AAADpVOmEpnPOqczkO119R9Zh2NH1TJQHbkmqEmWK5w=", "proof": [["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=", false], ["9aX9QtFqIDAnmO9u0wmXm0MAPSMg2fDo6pgxqSdZ+0s=", false], ["21YRTgD91MH4XIkr81rJqJKJquyx69CpbN5ganSLXXE=", false], ["x4AJ/fB/xWoR8SI3BlijU6qlQu1j5ExLwV/0zRBaszw=", false], ["U22Yg38t0WWlXV7q6RSFlURy1W8kbfJWvzyuGTUqEjw=", false], ["nv3gUqoVQp+uBbrU0LHXxk2mTQPXoYVKWIwsuEMMDTA=", false], ["2I3f7tQAqHVVlrIZQsFJfhFMMC5hGCkPkeZ3KXYEH6E=", false], ["h+sN26V+NfbShmc4AqSvWXXiJQbHz0xku2vl7hFSfyw=", false]]}, "votes": [{"vote": {"type": "vote", "election_hash": "rLmtWsCO92WJH1MUcsyy+Nz9BQIKzXqx/qUZfgjOCyk=", "choice": "A", "public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7brGG6RZkUFO+b4SyMSAbhPIZOjZm3dcE55fyh00a9ogm57iRYUdMZqs/9fdUvvxe9RjwFe0PfTm8408MmiH9P034jBD6EOOSPk5kSZrxJxg9QQgmd4FGz7zhCiBd9nEhWKesJK9/QGeR7tIomVjS2QGj8LsKIDvDBLG+2UZ88gkETuuRbFV0j82yOG9Ubq57+B49eQ+vZCZhms/eWI9geFZT9H+PpdvYBPbfm7Js3No6cSIO3YCqlK0edT6dwW6PeNYTBU23nsCaibtO1BqSnD89dOxnI/+GwUm2CFOLwLtUlkz40PDzgpMEWgsCo67H4A2ZzOKd59SzjL/9ujwlQIDAQAB", "signature": "bw5qFiaEUDoU1QwxR/5PY6qreoMoBXr9/1TcqMq9ViAL0TM7Ypwwo2qLQuefLeqbwLY+bk0wtZ2CuZy5NXPPuhAX9Hq+Ur3R6rCk2G9+bqUpApQVFNQ9qB5upF4Py4frEfLMjVO9dO5Ejoezt5hjps7hdOfDNjvorv3jyCy46VKHatVETFgNkjG2GggA5PmiKg1e5TQtqGuFtB1ipmT8rw454IONsTbFJ5iFrzbIJQvwxDk/ewEvKMyRqybHNPpPbou1XHwtketnjQtoaIGddaFllW/QyAWxPbqOVul7qawHGcdPeCkj88hQ4/9DvYt95936qhkhZZHKS6XrTp2ihA=="}, "block": "AAAMP0LxOtylDvermZWpO4yMld/L8AdyfONAMwJ4zVU=", "proof": [["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=", false], ["9aX9QtFqIDAnmO9u0wmXm0MAPSMg2fDo6pgxqSdZ+0s=", false], ["21YRTgD91MH4XIkr81rJqJKJquyx69CpbN5ganSLXXE=", false], ["x4AJ/fB/xWoR8SI3BlijU6qlQu1j5ExLwV/0zRBaszw=", false], ["U22Yg38t0WWlXV7q6RSFlURy1W8kbfJWvzyuGTUqEjw=", false], ["nv3gUqoVQp+uBbrU0LHXxk2mTQPXoYVKWIwsuEMMDTA=", false], ["2I3f7tQAqHVVlrIZQsFJfhFMMC5hGCkPkeZ3KXYEH6E=", false], ["h+sN26V+NfbShmc4AqSvWXXiJQbHz0xku2vl7hFSfyw=", false]]}, {"vote": {"type": "vote", "election_hash": "rLmtWsCO92WJH1MUcsyy+Nz9BQIKzXqx/qUZfgjOCyk=", "choice": "A", "public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3rcoqx6a+N7vfeyyoY5PdhtE4up0xJCz6oa3dgRLspvXktM9SxTizHNyDJkj1wHAWIZ9vwZOserSa4BVCgWqEq9EQr9j2X9mCUBXtm++5Z+UdqeR5JZogtDugaJPAlP1b6RpDNj1Sxb7ctUQq2bNYGgf/UepUjZYOzjst8j70Jv6A+hL0g5VPiuyiGoKkQuSLXPJ2UJykGNc5XAaK8983PMX6eQPg4HvqFNTvxL7jwyhF0ku7rKc0FBb7SwWq/ToGMV4KH/ZtT/DCf/fdYiD3bh5XDqTfknw5qNQ+hhtOZI7g2DrDe+5+aoq1MtS6EVEbNy3c3otU+T88OX3SKM0wIDAQAB", "signature": "FKaWgGc3+wBrZuZ3J/G1ED26kdRTzu5n/OaLq0SUo4QDGQsgA/3mK/zK70WZZpbmKE6tJuH6fHKXdvDuPahAQKymRcdjBQJf1PBHEm8DSjpwDt1VUjczgV+X8/mkVNNhy9MQbWvsv0vipRWTXs7pHaUi8tm4u0VOscr/wWS9B0Qz6GNFC2MUmmf2Xfvk22WLjTQ74xFPqXgLj3Udem+hdL4MG1VEXldvHJmCTyZH+u+yBDm6BHoswTmja4GOo8w5hY4I466qnhkz5rjeHPEzHNwb50Ux6XTSu/2xwXVxcRYvKfsyqiWR1HuhkiiUkCzQq65tLtZfQibSDw9ARJv5jA=="}, "block": "AAAUQEsv0MSf1wVe8NDVUYi25zjlDIO4u3bPmzv5Nus=", "proof": [["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=", false], ["9aX9QtFqIDAnmO9u0wmXm0MAPSMg2fDo6pgxqSdZ+0s=", false], ["21YRTgD91MH4XIkr81rJqJKJquyx69CpbN5ganSLXXE=", false], ["x4AJ/fB/xWoR8SI3BlijU6qlQu1j5ExLwV/0zRBaszw=", false], ["U22Yg38t0WWlXV7q6RSFlURy1W8kbfJWvzyuGTUqEjw=", false], ["nv3gUqoVQp+uBbrU0LHXxk2mTQPXoYVKWIwsuEMMDTA=", false], ["2I3f7tQAqHVVlrIZQsFJfhFMMC5hGCkPkeZ3KXYEH6E=", false], ["h+sN26V+NfbShmc4AqSvWXXiJQbHz0xku2vl7hFSfyw=", false]]}], "end": {}}'
+
+1746454303.073531: Mining block 5 with nonce 2000000
+1746454307.438099: Mining block 5 with nonce 3000000
+1746454308.9850478: Message from node: b'\x00X\x00\x03\x00\x00\x00\x05\x00\x00\x0c?B\xf1:\xdc\xa5\x0e\xf7\xab\x99\x95\xa9;\x8c\x8c\x95\xdf\xcb\xf0\x07r|\xe3@3\x02x\xcdU&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x17\x00\x00\x00\x0e\x00.\xdd\xe1{}'
+
+1746454308.9956555: Block message received: b'\x00\x03\x00\x00\x00\x05\x00\x00\x0c?B\xf1:\xdc\xa5\x0e\xf7\xab\x99\x95\xa9;\x8c\x8c\x95\xdf\xcb\xf0\x07r|\xe3@3\x02x\xcdU&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x17\x00\x00\x00\x0e\x00.\xdd\xe1{}'
+
+1746454309.0165741: Message from node: b'\x00X\x00\x03\x00\x00\x00\x05\x00\x00\x0c?B\xf1:\xdc\xa5\x0e\xf7\xab\x99\x95\xa9;\x8c\x8c\x95\xdf\xcb\xf0\x07r|\xe3@3\x02x\xcdU&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x17\x00\x00\x00\x0e\x00.\xdd\xe1{}'
+
+1746454309.0281265: Block verified: <block.Block object at 0x7f66b826bf10>
+
+1746454309.0282502: Chain extended: <block.Block object at 0x7f66b826bf10>
+
+1746454309.028624: Block message received: b'\x00\x03\x00\x00\x00\x05\x00\x00\x0c?B\xf1:\xdc\xa5\x0e\xf7\xab\x99\x95\xa9;\x8c\x8c\x95\xdf\xcb\xf0\x07r|\xe3@3\x02x\xcdU&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x17\x00\x00\x00\x0e\x00.\xdd\xe1{}'
+
+1746454309.0342112: Duplicate block received: b'\x00\x00\x00\x05\x00\x00\x0c?B\xf1:\xdc\xa5\x0e\xf7\xab\x99\x95\xa9;\x8c\x8c\x95\xdf\xcb\xf0\x07r|\xe3@3\x02x\xcdU&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x17\x00\x00\x00\x0e\x00.\xdd\xe1{}'
+
+1746454311.6307354: Block verified: <block.Block object at 0x7f66b826ba30>
+
+1746454311.636243: Invalid object in recompute_new: <election.Election object at 0x7f66b826b970>
+
+1746454311.641473: Invalid object in recompute_new: <vote.Vote object at 0x7f66b826b940>
+
+1746454311.6466975: Invalid object in recompute_new: <vote.Vote object at 0x7f66b826bac0>
+
+1746454311.6520002: Chain changed: <block.Block object at 0x7f66b826ba30>
+
+1746454311.6781573: Objects to be included in block: []
+
+1746454311.6839075: Mining block 6 with nonce 0
+1746454311.8220234: Message from node: b'\x00X\x00\x03\x00\x00\x00\x05\x00\x00\x0c?B\xf1:\xdc\xa5\x0e\xf7\xab\x99\x95\xa9;\x8c\x8c\x95\xdf\xcb\xf0\x07r|\xe3@3\x02x\xcdU&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x16\x00\x00\x00\x0e\x00;\x99\x82{}'
+
+1746454311.8326018: Block message received: b'\x00\x03\x00\x00\x00\x05\x00\x00\x0c?B\xf1:\xdc\xa5\x0e\xf7\xab\x99\x95\xa9;\x8c\x8c\x95\xdf\xcb\xf0\x07r|\xe3@3\x02x\xcdU&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x16\x00\x00\x00\x0e\x00;\x99\x82{}'
+
+1746454311.8397565: Duplicate block received: b'\x00\x00\x00\x05\x00\x00\x0c?B\xf1:\xdc\xa5\x0e\xf7\xab\x99\x95\xa9;\x8c\x8c\x95\xdf\xcb\xf0\x07r|\xe3@3\x02x\xcdU&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x16\x00\x00\x00\x0e\x00;\x99\x82{}'
+
+1746454312.5399232: Message from node: b'\x00X\x00\x03\x00\x00\x00\x06\x00\x00\x00\xc2\xb5\x0b\xabU\x01\x99\x84"\xea\xfc\xf0R\xebE\x99\xc6*\x15-\x9a%\\\x87B\xc1\x8bD(&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7$\x00\x00\x00\x10\x00\x0bA\x9b{}'
+
+1746454312.571009: Message from node: b'\x00X\x00\x03\x00\x00\x00\x06\x00\x00\x00\xc2\xb5\x0b\xabU\x01\x99\x84"\xea\xfc\xf0R\xebE\x99\xc6*\x15-\x9a%\\\x87B\xc1\x8bD(&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7$\x00\x00\x00\x10\x00\x0bA\x9b{}'
+
+1746454312.6005707: Block message received: b'\x00\x03\x00\x00\x00\x06\x00\x00\x00\xc2\xb5\x0b\xabU\x01\x99\x84"\xea\xfc\xf0R\xebE\x99\xc6*\x15-\x9a%\\\x87B\xc1\x8bD(&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7$\x00\x00\x00\x10\x00\x0bA\x9b{}'
+
+1746454312.6318576: Block message received: b'\x00\x03\x00\x00\x00\x06\x00\x00\x00\xc2\xb5\x0b\xabU\x01\x99\x84"\xea\xfc\xf0R\xebE\x99\xc6*\x15-\x9a%\\\x87B\xc1\x8bD(&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7$\x00\x00\x00\x10\x00\x0bA\x9b{}'
+
+1746454312.6529577: Block verified: <block.Block object at 0x7f66b826bf40>
+
+1746454312.6584604: Invalid object in recompute_new: <election.Election object at 0x7f66b826b970>
+
+1746454312.6689866: Invalid object in recompute_new: <vote.Vote object at 0x7f66b826b940>
+
+1746454312.6794991: Invalid object in recompute_new: <vote.Vote object at 0x7f66b826bac0>
+
+1746454312.6848536: Chain changed: <block.Block object at 0x7f66b826bf40>
+
+1746454312.7059941: Duplicate block received: b'\x00\x00\x00\x06\x00\x00\x00\xc2\xb5\x0b\xabU\x01\x99\x84"\xea\xfc\xf0R\xebE\x99\xc6*\x15-\x9a%\\\x87B\xc1\x8bD(&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7$\x00\x00\x00\x10\x00\x0bA\x9b{}'
+
+1746454314.847267: Block verified: <block.Block object at 0x7f66b826bbb0>
+
+1746454314.852697: Invalid object in recompute_new: <election.Election object at 0x7f66b826b970>
+
+1746454314.8578813: Invalid object in recompute_new: <vote.Vote object at 0x7f66b826b940>
+
+1746454314.863071: Invalid object in recompute_new: <vote.Vote object at 0x7f66b826bac0>
+
+1746454314.8683412: Chain changed: <block.Block object at 0x7f66b826bbb0>
+
+1746454314.8840384: Objects to be included in block: []
+
+1746454314.889858: Mining block 7 with nonce 0
+1746454319.3026466: Mining block 7 with nonce 1000000
+1746454321.5371678: Block verified: <block.Block object at 0x7f66b826bb20>
+
+1746454321.543509: Chain extended: <block.Block object at 0x7f66b826bb20>
+
+1746454321.5696719: Objects to be included in block: []
+
+1746454321.57543: Mining block 8 with nonce 0
+1746454325.7331686: Mining block 8 with nonce 1000000
+1746454326.9163165: Block verified: <block.Block object at 0x7f66b5c049d0>
+
+1746454326.921615: Chain extended: <block.Block object at 0x7f66b5c049d0>
+
+1746454326.9376025: Objects to be included in block: []
+
+1746454326.943427: Mining block 9 with nonce 0
+1746454327.0549617: Message from node: b'\x00X\x00\x03\x00\x00\x00\x08\x00\x00\rq\x93\xe1\xd9\x1cFP\x06\x1eX\xec\xda\xdd\xb08\xc8\x8bLgjO\xcfCS\xab\xe0\x95\xebP&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc71\x00\x00\x00\x16\x00\x13g\xda{}'
+
+1746454327.0707066: Block message received: b'\x00\x03\x00\x00\x00\x08\x00\x00\rq\x93\xe1\xd9\x1cFP\x06\x1eX\xec\xda\xdd\xb08\xc8\x8bLgjO\xcfCS\xab\xe0\x95\xebP&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc71\x00\x00\x00\x16\x00\x13g\xda{}'
+
+1746454327.0864434: Duplicate block received: b'\x00\x00\x00\x08\x00\x00\rq\x93\xe1\xd9\x1cFP\x06\x1eX\xec\xda\xdd\xb08\xc8\x8bLgjO\xcfCS\xab\xe0\x95\xebP&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc71\x00\x00\x00\x16\x00\x13g\xda{}'
+
+1746454327.8973422: Message from node: b'\x00X\x00\x03\x00\x00\x00\x08\x00\x00\rq\x93\xe1\xd9\x1cFP\x06\x1eX\xec\xda\xdd\xb08\xc8\x8bLgjO\xcfCS\xab\xe0\x95\xebP&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc75\x00\x00\x00\x16\x00\t[q{}'
+
+1746454327.9080985: Message from node: b'\x00X\x00\x03\x00\x00\x00\x08\x00\x00\rq\x93\xe1\xd9\x1cFP\x06\x1eX\xec\xda\xdd\xb08\xc8\x8bLgjO\xcfCS\xab\xe0\x95\xebP&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc75\x00\x00\x00\x16\x00\t[q{}'
+
+1746454327.973927: Block message received: b'\x00\x03\x00\x00\x00\x08\x00\x00\rq\x93\xe1\xd9\x1cFP\x06\x1eX\xec\xda\xdd\xb08\xc8\x8bLgjO\xcfCS\xab\xe0\x95\xebP&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc75\x00\x00\x00\x16\x00\t[q{}'
+
+1746454327.9895852: Block message received: b'\x00\x03\x00\x00\x00\x08\x00\x00\rq\x93\xe1\xd9\x1cFP\x06\x1eX\xec\xda\xdd\xb08\xc8\x8bLgjO\xcfCS\xab\xe0\x95\xebP&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc75\x00\x00\x00\x16\x00\t[q{}'
+
+1746454328.0052066: Block verified: <block.Block object at 0x7f66b5c04970>
+
+1746454328.010776: Invalid object in recompute_new: <election.Election object at 0x7f66b826b970>
+
+1746454328.0477686: Invalid object in recompute_new: <vote.Vote object at 0x7f66b826b940>
+
+1746454328.053161: Invalid object in recompute_new: <vote.Vote object at 0x7f66b826bac0>
+
+1746454328.058503: Chain changed: <block.Block object at 0x7f66b5c04970>
+
+1746454328.0854387: Duplicate block received: b'\x00\x00\x00\x08\x00\x00\rq\x93\xe1\xd9\x1cFP\x06\x1eX\xec\xda\xdd\xb08\xc8\x8bLgjO\xcfCS\xab\xe0\x95\xebP&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc75\x00\x00\x00\x16\x00\t[q{}'
+
+1746454329.7101653: Block verified: <block.Block object at 0x7f66b5c04a00>
+
+1746454329.71051: Invalid object in recompute_new: <election.Election object at 0x7f66b826b970>
+
+1746454329.7105677: Invalid object in recompute_new: <vote.Vote object at 0x7f66b826b940>
+
+1746454329.7105772: Invalid object in recompute_new: <vote.Vote object at 0x7f66b826bac0>
+
+1746454329.7106214: Chain changed: <block.Block object at 0x7f66b5c04a00>
+
+1746454329.7108855: Objects to be included in block: []
+
+1746454329.711398: Mining block 10 with nonce 0
+1746454330.6042428: Message from node: b'\x00X\x00\x03\x00\x00\x00\t\x00\x00\x04"\x19\xdf/\xfce\xee5n1\x06\x15\x92G\xed\x1f\xdexky\xf8A\xd5\xef[\x83\x10\xeb\xee&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc77\x00\x00\x00\x1a\x00\n,\xc5{}'
+
+1746454330.652009: Message from node: b'\x00X\x00\x03\x00\x00\x00\t\x00\x00\x04"\x19\xdf/\xfce\xee5n1\x06\x15\x92G\xed\x1f\xdexky\xf8A\xd5\xef[\x83\x10\xeb\xee&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc77\x00\x00\x00\x1a\x00\n,\xc5{}'
+
+1746454330.662721: Block message received: b'\x00\x03\x00\x00\x00\t\x00\x00\x04"\x19\xdf/\xfce\xee5n1\x06\x15\x92G\xed\x1f\xdexky\xf8A\xd5\xef[\x83\x10\xeb\xee&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc77\x00\x00\x00\x1a\x00\n,\xc5{}'
+
+1746454330.6941833: Block message received: b'\x00\x03\x00\x00\x00\t\x00\x00\x04"\x19\xdf/\xfce\xee5n1\x06\x15\x92G\xed\x1f\xdexky\xf8A\xd5\xef[\x83\x10\xeb\xee&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc77\x00\x00\x00\x1a\x00\n,\xc5{}'
+
+1746454330.715153: Block verified: <block.Block object at 0x7f66b5c04a30>
+
+1746454330.720723: Invalid object in recompute_new: <election.Election object at 0x7f66b826b970>
+
+1746454330.7208445: Invalid object in recompute_new: <vote.Vote object at 0x7f66b826b940>
+
+1746454330.7208853: Invalid object in recompute_new: <vote.Vote object at 0x7f66b826bac0>
+
+1746454330.7262502: Chain changed: <block.Block object at 0x7f66b5c04a30>
+
+1746454330.8059838: Duplicate block received: b'\x00\x00\x00\t\x00\x00\x04"\x19\xdf/\xfce\xee5n1\x06\x15\x92G\xed\x1f\xdexky\xf8A\xd5\xef[\x83\x10\xeb\xee&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc77\x00\x00\x00\x1a\x00\n,\xc5{}'
+
+1746454333.7756662: Mining block 10 with nonce 1000000
+1746454333.7863536: Objects to be included in block: []
+
+1746454333.792495: Mining block 10 with nonce 0
+1746454336.8401353: Block verified: <block.Block object at 0x7f66b5c04a60>
+
+1746454336.8454802: Chain extended: <block.Block object at 0x7f66b5c04a60>
+
+1746454336.8513055: Objects to be included in block: []
+
+1746454336.8519583: Mining block 11 with nonce 0
+1746454337.7691917: Message from node: b'\x00X\x00\x03\x00\x00\x00\n\x00\x00\x02\xf07\xa9c\xf7)\x065\x99\xcc\x9b\xfc\x8e\xa0g\x06b\x12f#\x85\x0c\xa4\xe3\x00Ow\x83\xba&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7:\x00\x00\x00\x1f\x00\x1b\x9dZ{}'
+
+1746454337.7798128: Message from node: b'\x00X\x00\x03\x00\x00\x00\n\x00\x00\x02\xf07\xa9c\xf7)\x065\x99\xcc\x9b\xfc\x8e\xa0g\x06b\x12f#\x85\x0c\xa4\xe3\x00Ow\x83\xba&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7:\x00\x00\x00\x1f\x00\x1b\x9dZ{}'
+
+1746454337.8070562: Block message received: b'\x00\x03\x00\x00\x00\n\x00\x00\x02\xf07\xa9c\xf7)\x065\x99\xcc\x9b\xfc\x8e\xa0g\x06b\x12f#\x85\x0c\xa4\xe3\x00Ow\x83\xba&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7:\x00\x00\x00\x1f\x00\x1b\x9dZ{}'
+
+1746454337.8226492: Block message received: b'\x00\x03\x00\x00\x00\n\x00\x00\x02\xf07\xa9c\xf7)\x065\x99\xcc\x9b\xfc\x8e\xa0g\x06b\x12f#\x85\x0c\xa4\xe3\x00Ow\x83\xba&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7:\x00\x00\x00\x1f\x00\x1b\x9dZ{}'
+
+1746454337.8382666: Block verified: <block.Block object at 0x7f66b5c04910>
+
+1746454337.8539438: Invalid object in recompute_new: <election.Election object at 0x7f66b826b970>
+
+1746454337.869497: Invalid object in recompute_new: <vote.Vote object at 0x7f66b826b940>
+
+1746454337.8799021: Invalid object in recompute_new: <vote.Vote object at 0x7f66b826bac0>
+
+1746454337.8852172: Chain changed: <block.Block object at 0x7f66b5c04910>
+
+1746454337.9009535: Duplicate block received: b'\x00\x00\x00\n\x00\x00\x02\xf07\xa9c\xf7)\x065\x99\xcc\x9b\xfc\x8e\xa0g\x06b\x12f#\x85\x0c\xa4\xe3\x00Ow\x83\xba&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7:\x00\x00\x00\x1f\x00\x1b\x9dZ{}'
+
+1746454340.9794128: Mining block 11 with nonce 1000000
+1746454340.9850821: Objects to be included in block: []
+
+1746454340.985703: Mining block 11 with nonce 0
+1746454341.263127: Message from node: b'\x00"\x00\x08\xac\xb9\xadZ\xc0\x8e\xf7e\x89\x1fS\x14r\xcc\xb2\xf8\xdc\xfd\x05\x02\n\xcdz\xb1\xfe\xa5\x19~\x08\xce\x0b)'
+
+1746454341.2684088: Get election message received: b'\x00\x08\xac\xb9\xadZ\xc0\x8e\xf7e\x89\x1fS\x14r\xcc\xb2\xf8\xdc\xfd\x05\x02\n\xcdz\xb1\xfe\xa5\x19~\x08\xce\x0b)'
+
+1746454341.2700384: Message sent to node <node.Node object at 0x7f66b826b670>: b'\x00\t\xac\xb9\xadZ\xc0\x8e\xf7e\x89\x1fS\x14r\xcc\xb2\xf8\xdc\xfd\x05\x02\n\xcdz\xb1\xfe\xa5\x19~\x08\xce\x0b){"start": {"election": {"type": "election", "name": "test_election", "choices": ["A", "B", "C"], "public_keys": ["MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3rcoqx6a+N7vfeyyoY5PdhtE4up0xJCz6oa3dgRLspvXktM9SxTizHNyDJkj1wHAWIZ9vwZOserSa4BVCgWqEq9EQr9j2X9mCUBXtm++5Z+UdqeR5JZogtDugaJPAlP1b6RpDNj1Sxb7ctUQq2bNYGgf/UepUjZYOzjst8j70Jv6A+hL0g5VPiuyiGoKkQuSLXPJ2UJykGNc5XAaK8983PMX6eQPg4HvqFNTvxL7jwyhF0ku7rKc0FBb7SwWq/ToGMV4KH/ZtT/DCf/fdYiD3bh5XDqTfknw5qNQ+hhtOZI7g2DrDe+5+aoq1MtS6EVEbNy3c3otU+T88OX3SKM0wIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7brGG6RZkUFO+b4SyMSAbhPIZOjZm3dcE55fyh00a9ogm57iRYUdMZqs/9fdUvvxe9RjwFe0PfTm8408MmiH9P034jBD6EOOSPk5kSZrxJxg9QQgmd4FGz7zhCiBd9nEhWKesJK9/QGeR7tIomVjS2QGj8LsKIDvDBLG+2UZ88gkETuuRbFV0j82yOG9Ubq57+B49eQ+vZCZhms/eWI9geFZT9H+PpdvYBPbfm7Js3No6cSIO3YCqlK0edT6dwW6PeNYTBU23nsCaibtO1BqSnD89dOxnI/+GwUm2CFOLwLtUlkz40PDzgpMEWgsCo67H4A2ZzOKd59SzjL/9ujwlQIDAQAB", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn0gzrT8olsDnBimVR5qfm2PaDurY1iNvQg8RcGJjLF+qqXuiJUP2YbH/e74rMSHBCWAEtAYOYJUZAgNz0koj3mNAMLHLsWvsLzYvdNPS/q2sm9LSTDtTzin42bQMGbQ5oGTK1jUuYs+qnttzv1IV3KgrA4E3yprh0wzXegFxian2vNaL1XB2YsbarBZw+ltvMg76goI372ILul49W7xTA5ZcT/w1NVtmy++razbFiiobLXwEbXR16SikVQaRILgBIAMZoYgtPAhtSkGaYjJPq5FN29XUtWoBUl/wyAuSE1MH+rYvTuWPLxXAdTWxsSaHgGMDQWbSQxnvC4e5BavBZQIDAQAB"], "end_time": 1746454319}, "block": "AAADpVOmEpnPOqczkO119R9Zh2NH1TJQHbkmqEmWK5w=", "proof": [["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=", false], ["9aX9QtFqIDAnmO9u0wmXm0MAPSMg2fDo6pgxqSdZ+0s=", false], ["21YRTgD91MH4XIkr81rJqJKJquyx69CpbN5ganSLXXE=", false], ["x4AJ/fB/xWoR8SI3BlijU6qlQu1j5ExLwV/0zRBaszw=", false], ["U22Yg38t0WWlXV7q6RSFlURy1W8kbfJWvzyuGTUqEjw=", false], ["nv3gUqoVQp+uBbrU0LHXxk2mTQPXoYVKWIwsuEMMDTA=", false], ["2I3f7tQAqHVVlrIZQsFJfhFMMC5hGCkPkeZ3KXYEH6E=", false], ["h+sN26V+NfbShmc4AqSvWXXiJQbHz0xku2vl7hFSfyw=", false]]}, "votes": [{"vote": {"type": "vote", "election_hash": "rLmtWsCO92WJH1MUcsyy+Nz9BQIKzXqx/qUZfgjOCyk=", "choice": "A", "public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7brGG6RZkUFO+b4SyMSAbhPIZOjZm3dcE55fyh00a9ogm57iRYUdMZqs/9fdUvvxe9RjwFe0PfTm8408MmiH9P034jBD6EOOSPk5kSZrxJxg9QQgmd4FGz7zhCiBd9nEhWKesJK9/QGeR7tIomVjS2QGj8LsKIDvDBLG+2UZ88gkETuuRbFV0j82yOG9Ubq57+B49eQ+vZCZhms/eWI9geFZT9H+PpdvYBPbfm7Js3No6cSIO3YCqlK0edT6dwW6PeNYTBU23nsCaibtO1BqSnD89dOxnI/+GwUm2CFOLwLtUlkz40PDzgpMEWgsCo67H4A2ZzOKd59SzjL/9ujwlQIDAQAB", "signature": "bw5qFiaEUDoU1QwxR/5PY6qreoMoBXr9/1TcqMq9ViAL0TM7Ypwwo2qLQuefLeqbwLY+bk0wtZ2CuZy5NXPPuhAX9Hq+Ur3R6rCk2G9+bqUpApQVFNQ9qB5upF4Py4frEfLMjVO9dO5Ejoezt5hjps7hdOfDNjvorv3jyCy46VKHatVETFgNkjG2GggA5PmiKg1e5TQtqGuFtB1ipmT8rw454IONsTbFJ5iFrzbIJQvwxDk/ewEvKMyRqybHNPpPbou1XHwtketnjQtoaIGddaFllW/QyAWxPbqOVul7qawHGcdPeCkj88hQ4/9DvYt95936qhkhZZHKS6XrTp2ihA=="}, "block": "AAAMP0LxOtylDvermZWpO4yMld/L8AdyfONAMwJ4zVU=", "proof": [["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=", false], ["9aX9QtFqIDAnmO9u0wmXm0MAPSMg2fDo6pgxqSdZ+0s=", false], ["21YRTgD91MH4XIkr81rJqJKJquyx69CpbN5ganSLXXE=", false], ["x4AJ/fB/xWoR8SI3BlijU6qlQu1j5ExLwV/0zRBaszw=", false], ["U22Yg38t0WWlXV7q6RSFlURy1W8kbfJWvzyuGTUqEjw=", false], ["nv3gUqoVQp+uBbrU0LHXxk2mTQPXoYVKWIwsuEMMDTA=", false], ["2I3f7tQAqHVVlrIZQsFJfhFMMC5hGCkPkeZ3KXYEH6E=", false], ["h+sN26V+NfbShmc4AqSvWXXiJQbHz0xku2vl7hFSfyw=", false]]}, {"vote": {"type": "vote", "election_hash": "rLmtWsCO92WJH1MUcsyy+Nz9BQIKzXqx/qUZfgjOCyk=", "choice": "A", "public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3rcoqx6a+N7vfeyyoY5PdhtE4up0xJCz6oa3dgRLspvXktM9SxTizHNyDJkj1wHAWIZ9vwZOserSa4BVCgWqEq9EQr9j2X9mCUBXtm++5Z+UdqeR5JZogtDugaJPAlP1b6RpDNj1Sxb7ctUQq2bNYGgf/UepUjZYOzjst8j70Jv6A+hL0g5VPiuyiGoKkQuSLXPJ2UJykGNc5XAaK8983PMX6eQPg4HvqFNTvxL7jwyhF0ku7rKc0FBb7SwWq/ToGMV4KH/ZtT/DCf/fdYiD3bh5XDqTfknw5qNQ+hhtOZI7g2DrDe+5+aoq1MtS6EVEbNy3c3otU+T88OX3SKM0wIDAQAB", "signature": "FKaWgGc3+wBrZuZ3J/G1ED26kdRTzu5n/OaLq0SUo4QDGQsgA/3mK/zK70WZZpbmKE6tJuH6fHKXdvDuPahAQKymRcdjBQJf1PBHEm8DSjpwDt1VUjczgV+X8/mkVNNhy9MQbWvsv0vipRWTXs7pHaUi8tm4u0VOscr/wWS9B0Qz6GNFC2MUmmf2Xfvk22WLjTQ74xFPqXgLj3Udem+hdL4MG1VEXldvHJmCTyZH+u+yBDm6BHoswTmja4GOo8w5hY4I466qnhkz5rjeHPEzHNwb50Ux6XTSu/2xwXVxcRYvKfsyqiWR1HuhkiiUkCzQq65tLtZfQibSDw9ARJv5jA=="}, "block": "AAAUQEsv0MSf1wVe8NDVUYi25zjlDIO4u3bPmzv5Nus=", "proof": [["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=", false], ["9aX9QtFqIDAnmO9u0wmXm0MAPSMg2fDo6pgxqSdZ+0s=", false], ["21YRTgD91MH4XIkr81rJqJKJquyx69CpbN5ganSLXXE=", false], ["x4AJ/fB/xWoR8SI3BlijU6qlQu1j5ExLwV/0zRBaszw=", false], ["U22Yg38t0WWlXV7q6RSFlURy1W8kbfJWvzyuGTUqEjw=", false], ["nv3gUqoVQp+uBbrU0LHXxk2mTQPXoYVKWIwsuEMMDTA=", false], ["2I3f7tQAqHVVlrIZQsFJfhFMMC5hGCkPkeZ3KXYEH6E=", false], ["h+sN26V+NfbShmc4AqSvWXXiJQbHz0xku2vl7hFSfyw=", false]]}], "end": {}}'
+
+1746454342.1051812: Message from node: b'\x00X\x00\x03\x00\x00\x00\x0b\x00\x00\x02yh\xde\x14-yI\x12~Mh\xa2ElZ\xe4\xfe\x04\xa1\xaa\xb5x\xbd\xff\xdc3\xb8/\xde&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7A\x00\x00\x00%\x00\x10\xfbX{}'
+
+1746454342.126322: Block message received: b'\x00\x03\x00\x00\x00\x0b\x00\x00\x02yh\xde\x14-yI\x12~Mh\xa2ElZ\xe4\xfe\x04\xa1\xaa\xb5x\xbd\xff\xdc3\xb8/\xde&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7A\x00\x00\x00%\x00\x10\xfbX{}'
+
+1746454342.127108: Block verified: <block.Block object at 0x7f66b5c04a90>
+
+1746454342.1272016: Chain extended: <block.Block object at 0x7f66b5c04a90>
+
+1746454342.132948: Message from node: b'\x00X\x00\x03\x00\x00\x00\x0b\x00\x00\x02yh\xde\x14-yI\x12~Mh\xa2ElZ\xe4\xfe\x04\xa1\xaa\xb5x\xbd\xff\xdc3\xb8/\xde&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7A\x00\x00\x00%\x00\x10\xfbX{}'
+
+1746454342.1801758: Block message received: b'\x00\x03\x00\x00\x00\x0b\x00\x00\x02yh\xde\x14-yI\x12~Mh\xa2ElZ\xe4\xfe\x04\xa1\xaa\xb5x\xbd\xff\xdc3\xb8/\xde&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7A\x00\x00\x00%\x00\x10\xfbX{}'
+
+1746454342.1907697: Duplicate block received: b'\x00\x00\x00\x0b\x00\x00\x02yh\xde\x14-yI\x12~Mh\xa2ElZ\xe4\xfe\x04\xa1\xaa\xb5x\xbd\xff\xdc3\xb8/\xde&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7A\x00\x00\x00%\x00\x10\xfbX{}'
+
+1746454345.271719: Mining block 11 with nonce 1000000
+1746454345.2822487: Objects to be included in block: []
+
+1746454345.2879655: Mining block 12 with nonce 0
+1746454346.3957832: Block verified: <block.Block object at 0x7f66b5c049a0>
+
+1746454346.4010773: Chain extended: <block.Block object at 0x7f66b5c049a0>
+
+1746454346.4013991: Objects to be included in block: []
+
+1746454346.402061: Mining block 13 with nonce 0
+1746454349.2477863: Block verified: <block.Block object at 0x7f66b5c04b50>
+
+1746454349.2531853: Chain extended: <block.Block object at 0x7f66b5c04b50>
+
+1746454349.2794378: Objects to be included in block: []
+
+1746454349.2853446: Mining block 14 with nonce 0
+1746454353.592544: Message from node: b'\x00X\x00\x03\x00\x00\x00\x0e\x00\x00\x02\xc2\xf7\x8e\x1a!{\x1f\x17\xd1\x87t!+\x8b\xb6\xec\xe1\xebj\xd7\x00\x01q\xc0\xa7)\xdbx\xb6&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7N\x00\x00\x00>\x00\x0beh{}'
+
+1746454353.6083791: Block message received: b'\x00\x03\x00\x00\x00\x0e\x00\x00\x02\xc2\xf7\x8e\x1a!{\x1f\x17\xd1\x87t!+\x8b\xb6\xec\xe1\xebj\xd7\x00\x01q\xc0\xa7)\xdbx\xb6&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7N\x00\x00\x00>\x00\x0beh{}'
+
+1746454353.6347642: Block verified: <block.Block object at 0x7f66b5c04b20>
+
+1746454353.6400323: Chain extended: <block.Block object at 0x7f66b5c04b20>
+
+1746454353.6940818: Message from node: b'\x00X\x00\x03\x00\x00\x00\x0e\x00\x00\x02\xc2\xf7\x8e\x1a!{\x1f\x17\xd1\x87t!+\x8b\xb6\xec\xe1\xebj\xd7\x00\x01q\xc0\xa7)\xdbx\xb6&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7N\x00\x00\x00>\x00\x0beh{}'
+
+1746454353.710332: Block message received: b'\x00\x03\x00\x00\x00\x0e\x00\x00\x02\xc2\xf7\x8e\x1a!{\x1f\x17\xd1\x87t!+\x8b\xb6\xec\xe1\xebj\xd7\x00\x01q\xc0\xa7)\xdbx\xb6&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7N\x00\x00\x00>\x00\x0beh{}'
+
+1746454353.715735: Duplicate block received: b'\x00\x00\x00\x0e\x00\x00\x02\xc2\xf7\x8e\x1a!{\x1f\x17\xd1\x87t!+\x8b\xb6\xec\xe1\xebj\xd7\x00\x01q\xc0\xa7)\xdbx\xb6&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7N\x00\x00\x00>\x00\x0beh{}'
+
+1746454353.7628717: Mining block 14 with nonce 1000000
+1746454353.7682765: Objects to be included in block: []
+
+1746454353.7689576: Mining block 15 with nonce 0
+1746454358.309762: Mining block 15 with nonce 1000000
+1746454362.8795629: Mining block 15 with nonce 2000000
+1746454367.3570352: Mining block 15 with nonce 3000000
+1746454371.3092427: Message from node: b'\x00X\x00\x03\x00\x00\x00\x0f\x00\x00\x02\xa6V\xc5\x186\xb6U\xcd\x82\xbb\x82\xdcHb\xb4\x86\xa6\xb4e\x12\x89\x8e[#\xeez\x8a\xc0\xde&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7Q\x00\x00\x00J\x00@\xfc8{}'
+
+1746454371.3302896: Block message received: b'\x00\x03\x00\x00\x00\x0f\x00\x00\x02\xa6V\xc5\x186\xb6U\xcd\x82\xbb\x82\xdcHb\xb4\x86\xa6\xb4e\x12\x89\x8e[#\xeez\x8a\xc0\xde&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7Q\x00\x00\x00J\x00@\xfc8{}'
+
+1746454371.3360724: Block verified: <block.Block object at 0x7f66b5c04af0>
+
+1746454371.3419855: Chain extended: <block.Block object at 0x7f66b5c04af0>
+
+1746454371.3580773: Message from node: b'\x00X\x00\x03\x00\x00\x00\x0f\x00\x00\x02\xa6V\xc5\x186\xb6U\xcd\x82\xbb\x82\xdcHb\xb4\x86\xa6\xb4e\x12\x89\x8e[#\xeez\x8a\xc0\xde&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7Q\x00\x00\x00J\x00@\xfc8{}'
+
+1746454371.3634384: Block message received: b'\x00\x03\x00\x00\x00\x0f\x00\x00\x02\xa6V\xc5\x186\xb6U\xcd\x82\xbb\x82\xdcHb\xb4\x86\xa6\xb4e\x12\x89\x8e[#\xeez\x8a\xc0\xde&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7Q\x00\x00\x00J\x00@\xfc8{}'
+
+1746454371.3688686: Duplicate block received: b'\x00\x00\x00\x0f\x00\x00\x02\xa6V\xc5\x186\xb6U\xcd\x82\xbb\x82\xdcHb\xb4\x86\xa6\xb4e\x12\x89\x8e[#\xeez\x8a\xc0\xde&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7Q\x00\x00\x00J\x00@\xfc8{}'
+
+1746454371.8573475: Mining block 15 with nonce 4000000
+1746454371.8678248: Objects to be included in block: []
+
+1746454371.8737862: Mining block 16 with nonce 0
+1746454376.336204: Mining block 16 with nonce 1000000
+1746454380.4529338: Mining block 16 with nonce 2000000
+1746454384.550915: Mining block 16 with nonce 3000000
+1746454388.753431: Mining block 16 with nonce 4000000
+1746454392.8891644: Mining block 16 with nonce 5000000
+1746454397.0663307: Mining block 16 with nonce 6000000
+1746454401.361182: Mining block 16 with nonce 7000000
+1746454401.988565: Message from node: b'\x00X\x00\x03\x00\x00\x00\x10\x00\x00\x02\xb7\xdaiK\xa9\x9c\xe5\xf4\xf0g\xc3\x1bQ@\x96\xbe\x0fJ\x8ea\x10\xba\xceK\xc2\x1f*\xad^&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7c\x00\x00\x00X\x00s\x86;{}'
+
+1746454401.9887552: Block message received: b'\x00\x03\x00\x00\x00\x10\x00\x00\x02\xb7\xdaiK\xa9\x9c\xe5\xf4\xf0g\xc3\x1bQ@\x96\xbe\x0fJ\x8ea\x10\xba\xceK\xc2\x1f*\xad^&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7c\x00\x00\x00X\x00s\x86;{}'
+
+1746454402.0085394: Message from node: b'\x00X\x00\x03\x00\x00\x00\x10\x00\x00\x02\xb7\xdaiK\xa9\x9c\xe5\xf4\xf0g\xc3\x1bQ@\x96\xbe\x0fJ\x8ea\x10\xba\xceK\xc2\x1f*\xad^&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7c\x00\x00\x00X\x00s\x86;{}'
+
+1746454402.0302837: Block verified: <block.Block object at 0x7f66b5c04b80>
+
+1746454402.0737035: Block message received: b'\x00\x03\x00\x00\x00\x10\x00\x00\x02\xb7\xdaiK\xa9\x9c\xe5\xf4\xf0g\xc3\x1bQ@\x96\xbe\x0fJ\x8ea\x10\xba\xceK\xc2\x1f*\xad^&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7c\x00\x00\x00X\x00s\x86;{}'
+
+1746454402.0842772: Chain extended: <block.Block object at 0x7f66b5c04b80>
+
+1746454402.1108923: Duplicate block received: b'\x00\x00\x00\x10\x00\x00\x02\xb7\xdaiK\xa9\x9c\xe5\xf4\xf0g\xc3\x1bQ@\x96\xbe\x0fJ\x8ea\x10\xba\xceK\xc2\x1f*\xad^&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7c\x00\x00\x00X\x00s\x86;{}'
+
+1746454404.07996: Duplicate block received: b'\x00\x00\x00\x10\x00\x00\x02\xb7\xdaiK\xa9\x9c\xe5\xf4\xf0g\xc3\x1bQ@\x96\xbe\x0fJ\x8ea\x10\xba\xceK\xc2\x1f*\xad^&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7c\x00\x00\x00X\x00s\x86;{}'
+
+1746454404.0904884: Objects to be included in block: []
+
+1746454404.0962472: Mining block 17 with nonce 0
+1746454408.604457: Mining block 17 with nonce 1000000
+1746454411.505944: Message from node: b'\x00X\x00\x03\x00\x00\x00\x11\x00\x00\x02\n\x17\x80\xc8]gO\x80\x99+$r\xe5\xe7\x95\xec\xd3\xc4\x8b\x12\x9fSMs\xd0\xba\xf24\x92&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x81\x00\x00\x00i\x00"\x8fu{}'
+
+1746454411.5164635: Block message received: b'\x00\x03\x00\x00\x00\x11\x00\x00\x02\n\x17\x80\xc8]gO\x80\x99+$r\xe5\xe7\x95\xec\xd3\xc4\x8b\x12\x9fSMs\xd0\xba\xf24\x92&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x81\x00\x00\x00i\x00"\x8fu{}'
+
+1746454411.5224848: Block verified: <block.Block object at 0x7f66b5c04ac0>
+
+1746454411.5382018: Message from node: b'\x00X\x00\x03\x00\x00\x00\x11\x00\x00\x02\n\x17\x80\xc8]gO\x80\x99+$r\xe5\xe7\x95\xec\xd3\xc4\x8b\x12\x9fSMs\xd0\xba\xf24\x92&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x81\x00\x00\x00i\x00"\x8fu{}'
+
+1746454411.5487995: Chain extended: <block.Block object at 0x7f66b5c04ac0>
+
+1746454411.559528: Block message received: b'\x00\x03\x00\x00\x00\x11\x00\x00\x02\n\x17\x80\xc8]gO\x80\x99+$r\xe5\xe7\x95\xec\xd3\xc4\x8b\x12\x9fSMs\xd0\xba\xf24\x92&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x81\x00\x00\x00i\x00"\x8fu{}'
+
+1746454411.5648348: Duplicate block received: b'\x00\x00\x00\x11\x00\x00\x02\n\x17\x80\xc8]gO\x80\x99+$r\xe5\xe7\x95\xec\xd3\xc4\x8b\x12\x9fSMs\xd0\xba\xf24\x92&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\x81\x00\x00\x00i\x00"\x8fu{}'
+
+1746454412.9425619: Mining block 17 with nonce 2000000
+1746454412.953077: Objects to be included in block: []
+
+1746454412.9535704: Mining block 18 with nonce 0
+1746454417.46283: Mining block 18 with nonce 1000000
+1746454421.7766013: Mining block 18 with nonce 2000000
+1746454426.138315: Mining block 18 with nonce 3000000
+1746454430.6799524: Mining block 18 with nonce 4000000
+1746454435.2548125: Mining block 18 with nonce 5000000
+1746454436.7342775: Block verified: <block.Block object at 0x7f66b5c04bb0>
+
+1746454436.7396145: Chain extended: <block.Block object at 0x7f66b5c04bb0>
+
+1746454436.7671528: Objects to be included in block: []
+
+1746454436.7729807: Mining block 19 with nonce 0
+1746454441.269464: Mining block 19 with nonce 1000000
+1746454445.3021312: Mining block 19 with nonce 2000000
+1746454449.3130975: Mining block 19 with nonce 3000000
+1746454453.6106908: Mining block 19 with nonce 4000000
+1746454457.82747: Mining block 19 with nonce 5000000
+1746454461.913954: Mining block 19 with nonce 6000000
+1746454465.8966498: Mining block 19 with nonce 7000000
+1746454467.9244275: Message from node: b'\x00X\x00\x03\x00\x00\x00\x13\x00\x00\x00\xb0\xf6\xb1\x93!\xaf\xe4?\xda\x83\x8dl\xa0\xdc4\x86\xcf\xe1\x1cHb\xfciz\xadd\xa4^\xf4&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\xa5\x00\x00\x00\x97\x00t\x8f%{}'
+
+1746454467.9612231: Block message received: b'\x00\x03\x00\x00\x00\x13\x00\x00\x00\xb0\xf6\xb1\x93!\xaf\xe4?\xda\x83\x8dl\xa0\xdc4\x86\xcf\xe1\x1cHb\xfciz\xadd\xa4^\xf4&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\xa5\x00\x00\x00\x97\x00t\x8f%{}'
+
+1746454467.9668677: Block verified: <block.Block object at 0x7f66b5c04be0>
+
+1746454467.972236: Chain extended: <block.Block object at 0x7f66b5c04be0>
+
+1746454467.9828656: Message from node: b'\x00X\x00\x03\x00\x00\x00\x13\x00\x00\x00\xb0\xf6\xb1\x93!\xaf\xe4?\xda\x83\x8dl\xa0\xdc4\x86\xcf\xe1\x1cHb\xfciz\xadd\xa4^\xf4&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\xa5\x00\x00\x00\x97\x00t\x8f%{}'
+
+1746454467.9933333: Block message received: b'\x00\x03\x00\x00\x00\x13\x00\x00\x00\xb0\xf6\xb1\x93!\xaf\xe4?\xda\x83\x8dl\xa0\xdc4\x86\xcf\xe1\x1cHb\xfciz\xadd\xa4^\xf4&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\xa5\x00\x00\x00\x97\x00t\x8f%{}'
+
+1746454467.9934177: Duplicate block received: b'\x00\x00\x00\x13\x00\x00\x00\xb0\xf6\xb1\x93!\xaf\xe4?\xda\x83\x8dl\xa0\xdc4\x86\xcf\xe1\x1cHb\xfciz\xadd\xa4^\xf4&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\xa5\x00\x00\x00\x97\x00t\x8f%{}'
+
+1746454468.783451: Message from node: b'\x00X\x00\x03\x00\x00\x00\x14\x00\x00\x01\x85\x05\x8d\x90b\x82yn#\xec\x92\x89\xd6O\xac\xc0\xd8\xc7E\xa8\xa1\x92z_\xc9\x0f*bt&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\xc3\x00\x00\x00\xb5\x00\x03b\x93{}'
+
+1746454468.80982: Message from node: b'\x00X\x00\x03\x00\x00\x00\x14\x00\x00\x01\x85\x05\x8d\x90b\x82yn#\xec\x92\x89\xd6O\xac\xc0\xd8\xc7E\xa8\xa1\x92z_\xc9\x0f*bt&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\xc3\x00\x00\x00\xb5\x00\x03b\x93{}'
+
+1746454468.8410125: Block message received: b'\x00\x03\x00\x00\x00\x14\x00\x00\x01\x85\x05\x8d\x90b\x82yn#\xec\x92\x89\xd6O\xac\xc0\xd8\xc7E\xa8\xa1\x92z_\xc9\x0f*bt&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\xc3\x00\x00\x00\xb5\x00\x03b\x93{}'
+
+1746454468.8569982: Block message received: b'\x00\x03\x00\x00\x00\x14\x00\x00\x01\x85\x05\x8d\x90b\x82yn#\xec\x92\x89\xd6O\xac\xc0\xd8\xc7E\xa8\xa1\x92z_\xc9\x0f*bt&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\xc3\x00\x00\x00\xb5\x00\x03b\x93{}'
+
+1746454468.8734663: Block verified: <block.Block object at 0x7f66b5c04c70>
+
+1746454468.8788557: Chain extended: <block.Block object at 0x7f66b5c04c70>
+
+1746454468.9166589: Duplicate block received: b'\x00\x00\x00\x14\x00\x00\x01\x85\x05\x8d\x90b\x82yn#\xec\x92\x89\xd6O\xac\xc0\xd8\xc7E\xa8\xa1\x92z_\xc9\x0f*bt&\x84dv\xfd_\xc5J]C8Qg\xc9QD\xf2d?S<\xc8[\xb9\xd1kx/\x8d}\xb1\x93\x00\x00\x00\x00h\x18\xc7\xc3\x00\x00\x00\xb5\x00\x03b\x93{}'
+
+1746454470.276381: Mining block 19 with nonce 8000000
+1746454470.286946: Objects to be included in block: []
+
+1746454470.2925332: Mining block 21 with nonce 0
+1746454474.5870588: Mining block 21 with nonce 1000000
+1746454474.7952116: Connection closed by peer: <node.Node object at 0x7f66b826b670>
+
+1746454476.7086544: Connection closed by peer: <node.Node object at 0x7f66b826a6b0>
+
+1746454478.087805: Block verified: <block.Block object at 0x7f66b826baf0>
+
+1746454478.0930853: Chain extended: <block.Block object at 0x7f66b826baf0>
+
+1746454478.10895: Objects to be included in block: []
+
+1746454478.1147873: Mining block 22 with nonce 0

@@ -1,5 +1,5 @@
 from vote import Vote
-from peer import Peer
+from light_node import LightNode
 from election import Election
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import rsa
@@ -35,7 +35,7 @@ def setUp():
     print(private_keys, public_keys)
     election_name = "test_election"
     election_choices = ["A", "B", "C"]
-    election_end_time = int(time.time()) + 3600  # 1 hour from now
+    election_end_time = int(time.time()) + 30  # 1 minute from now
     
     election_data = {
         "name": election_name,
@@ -74,7 +74,6 @@ def create_vote(election, voter_index, choice):
     
 
 import argparse
-from peer import Peer
 import time
 def main():
     parser = argparse.ArgumentParser(description="Start a well-behaved peer node.")
@@ -85,16 +84,25 @@ def main():
     args = parser.parse_args()
 
     print(f"Starting peer '{args.name}' on port {args.port}, connecting to tracker at {args.tracker_ip}:{args.tracker_port}")
-    peer = Peer(args.name, port=args.port, tracker_ip=args.tracker_ip, tracker_port=args.tracker_port)
-    time.sleep(3)  # Give some time for the peer to initialize
+    peer = LightNode(args.name, port=args.port, tracker_ip=args.tracker_ip, tracker_port=args.tracker_port)
+    time.sleep(1)  # Give some time for the peer to initialize
     ele = setUp()
     print(ele.jsonify())
     peer.send_election(ele)
-    time.sleep(2)
+    time.sleep(1)
     vote1 = create_vote(ele, 0, "A")
     vote2 = create_vote(ele, 1, "A")
+    vote3 = create_vote(ele, 2, "B")
     peer.send_vote(vote1)
     peer.send_vote(vote2)
+    time.sleep(10)
+    res = peer.request_election(ele.hashy)
+    print("RESULTS:", res)
+    time.sleep(40)
+    res = peer.request_election(ele.hashy)
+    print("RESULTS:", res)
+    print(res.winner)
+    print(res.used_keys)
     # Keep the process alive
     try:
         while True:

@@ -11,7 +11,7 @@ def main():
 
     print(f"Starting peer '{args.name}' on port {args.port}, connecting to tracker at {args.tracker_ip}:{args.tracker_port}")
     peer = Peer(args.name, port=args.port, tracker_ip=args.tracker_ip, tracker_port=args.tracker_port)
-    time.sleep(3)  # Give some time for the peer to initialize
+    time.sleep(2)  # Give some time for the peer to initialize
     peer.mine()
 
     # Keep the process alive
