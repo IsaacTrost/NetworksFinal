@@ -25,14 +25,16 @@ def get_node_info():
 
 @app.route('/api/elections', methods=['GET'])
 def get_elections():
-    # This assumes you are tracking elections via block headers
     elections = []
     for block in node.blocks.values():
         for election_hash, election in block.elections.items():
             elections.append({
                 "name": election.name,
                 "choices": election.choices,
-                "hash": election_hash.hex()
+                "hash": election_hash.hex(),
+                "total_votes": election.total_votes,
+                "end_time": election.end_time,
+                "winner": election.winner
             })
     return jsonify(elections)
 
@@ -42,10 +44,9 @@ def submit_vote():
     try:
         vote_data = {
             "election_name": data["election_id"],
-            
             "choice": data["candidate_id"],
-            "public_key": data["public_key"],
-            "signature": data["signature"]
+            "public_key": "placeholder",  # Replace with actual if signing is done server-side
+            "signature": "placeholder"   # Replace with actual if signing is done server-side
         }
         vote_json = str(vote_data).replace("'", '"')
         node.handle_vote(vote_json.encode(), node)
@@ -56,13 +57,19 @@ def submit_vote():
 @app.route('/api/results', methods=['GET'])
 def get_results():
     try:
-        # Gather results from longest chain
         election_results = {}
         for block in node.blocks.values():
             for election_hash, election in block.elections.items():
+                candidate_tally = {}
+                for vote in election.votes:
+                    choice = vote.get("choice")
+                    if choice:
+                        candidate_tally[choice] = candidate_tally.get(choice, 0) + 1
+
                 election_results[election.name] = {
                     "winner": election.winner,
-                    "total_votes": election.total_votes
+                    "total_votes": election.total_votes,
+                    "per_candidate": candidate_tally
                 }
         return jsonify(election_results)
     except Exception as e:
@@ -71,6 +78,7 @@ def get_results():
 if __name__ == '__main__':
     NODE_PORT = 6000
     FLASK_PORT = 5000
-    node = LightNode(name="WebNode", port=NODE_PORT, tracker_ip="127.0.0.1", tracker_port=8000)
+    node = LightNode(name="WebNode", port=NODE_PORT, tracker_ip=TRACKER_IP, tracker_port=TRACKER_PORT)
     app.run(port=FLASK_PORT, debug=True)
+
 
