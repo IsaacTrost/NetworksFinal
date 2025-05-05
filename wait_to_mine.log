@@ -1,0 +1,18 @@
+wait_to_mine INITIALIZE.
+
+1746485517.7509801: Node added: <node.Node object at 0x7fa107175120>
+
+1746485517.752945: Node list received: []
+
+1746485518.2453783: Connection accepted: <socket.socket fd=10, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 5006), raddr=('127.0.0.1', 43116)>
+
+1746485518.2876494: Node added: <node.Node object at 0x7fa107176020>
+
+1746485518.3084793: Longest chain sent to node <node.Node object at 0x7fa107176020>
+
+1746485519.0626523: Connection accepted: <socket.socket fd=9, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 5006), raddr=('127.0.0.1', 43128)>
+
+1746485519.0682082: Node added: <node.Node object at 0x7fa1071762f0>
+
+1746485519.1011236: Longest chain sent to node <node.Node object at 0x7fa1071762f0>
+

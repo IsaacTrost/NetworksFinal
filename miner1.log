@@ -1,0 +1,24 @@
+miner1 INITIALIZE.
+
+1746485518.2374425: Node added: <node.Node object at 0x7fa106ec22c0>
+
+1746485518.2397528: Node added: <node.Node object at 0x7fa106ec23b0>
+
+1746485518.266956: Node list received: [{'ip': '127.0.0.1', 'port': 5000}]
+
+1746485518.2673442: Node list received: [{'ip': '127.0.0.1', 'port': 5006}]
+
+1746485518.268088: Initialized ForkingNode. Will hold 10 blocks before releasing.
+1746485518.268199: Starting mining process...
+
+1746485518.2690885: Mining block 0 with nonce 0
+1746485519.0735185: Connection accepted: <socket.socket fd=13, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 5001), raddr=('127.0.0.1', 49522)>
+
+1746485519.100563: Node added: <node.Node object at 0x7fa106ec3400>
+
+1746485527.08025: Mining block 0 with nonce 10000000
+1746485531.5276961: Block verified: Index: 0, Difficulty: 128, Objects: []
+
+1746485531.5277672: INF: Chain extended
+
+1746485531.5280244: Mining block 1 with nonce 0

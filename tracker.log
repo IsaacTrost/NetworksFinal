@@ -1,0 +1,20 @@
+tracker INITIALIZE.
+
+1746485517.7521918: Connection accepted: <socket.socket fd=8, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 45312)>
+
+1746485517.7553947: Node added: <node.Node object at 0x7fa107175480>
+
+1746485517.755508: Longest chain sent to node <node.Node object at 0x7fa107175480>
+
+1746485518.2383919: Connection accepted: <socket.socket fd=10, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 45320)>
+
+1746485518.2396863: Node added: <node.Node object at 0x7fa107175ff0>
+
+1746485518.268113: Longest chain sent to node <node.Node object at 0x7fa107175ff0>
+
+1746485519.056448: Connection accepted: <socket.socket fd=9, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 5000), raddr=('127.0.0.1', 45322)>
+
+1746485519.0568547: Node added: <node.Node object at 0x7fa107176290>
+
+1746485519.0913026: Longest chain sent to node <node.Node object at 0x7fa107176290>
+

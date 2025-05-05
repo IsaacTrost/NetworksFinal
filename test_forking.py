@@ -4,7 +4,7 @@ import time
 import os
 import signal
 from forking_node import ForkingNode
-from light_node import LightNode
+from peer_light import LightNode
 from peer import Peer
 from election import Election
 from vote import Vote
@@ -194,11 +194,10 @@ def main():
     processes.append(tracker_process)
     time.sleep(1)  # Give some time for the tracker to initialize
 
-    # Start sender node
-    sender_process = Process(target=sender, args=("sender", 5003, "127.0.0.1", args.tracker_port))
-    sender_process.start()
-    processes.append(sender_process)
-    time.sleep(1)  # Give some time for the sender node to initialize
+    # Start wait-to-mine node
+    wait_to_mine_process = Process(target=wait_to_mine, args=("wait_to_mine", 5005 + args.num_observers, "127.0.0.1", args.tracker_port))
+    wait_to_mine_process.start()
+    processes.append(wait_to_mine_process)
 
     # Start miner nodes
     miner1_process = Process(target=minor1, args=("miner1", 5001, "127.0.0.1", args.tracker_port))
@@ -211,17 +210,9 @@ def main():
     processes.append(miner2_process)
     time.sleep(1)  # Give some time for the miner node to initialize
 
-    # Start observer nodes
-    for i in range(args.num_observers):
-        observer_process = Process(target=observer, args=(f"observer{i+1}", 5004 + i, "127.0.0.1", args.tracker_port))
-        observer_process.start()
-        processes.append(observer_process)
-    time.sleep(1)  # Give some time for the observer nodes to initialize
 
-    # Start wait-to-mine node
-    wait_to_mine_process = Process(target=wait_to_mine, args=("wait_to_mine", 5005 + args.num_observers, "127.0.0.1", args.tracker_port))
-    wait_to_mine_process.start()
-    processes.append(wait_to_mine_process)
+
+
     try:
         time.sleep(args.duration)
     except KeyboardInterrupt:

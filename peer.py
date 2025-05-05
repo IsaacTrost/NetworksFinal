@@ -1226,6 +1226,15 @@ class Peer():
                         # Send ping
                         ping_message = PING.to_bytes(2, byteorder='big')
                         self.send_message(ping_message, node)
+
+                        # Increment lastSeen counter (will be reset by pong)
+                        node.lastSeen += 1
+                        
+                        # Remove node if no response for too long
+                        if node.lastSeen > 3:  # No response for 3 ping cycles
+                            self.write_log(f"Node {addr} unresponsive, removing\n")
+                            self.remove_node(addr)
+                            
                     except Exception as e:
                         # Remove failed nodes
                         self.write_log(f"Ping failed for {addr}: {e}\n")
