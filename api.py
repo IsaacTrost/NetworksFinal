@@ -5,7 +5,7 @@ import time
 
 # Need changes to match tracker set up 
 TRACKER_IP = "127.0.0.1"
-TRACKER_PORT = 8000
+TRACKER_PORT = 5000
 NODE_NAME = "WebNode"
 NODE_PORT = 5000
 

@@ -49,9 +49,12 @@ class Peer():
         self.data_lock = threading.Lock() # lock for the data (all of the data structures here)
         self.send_lock = threading.Lock() # lock to prevent two threads from sending at the same time. More fine-grained per node could be good, but this should suffice
         threading.Thread(target=self.accept_connections, daemon=True).start() # starting the thread to accept connections
+        self.is_tracker = False # if this is the tracker or not 
         if tracker_ip and tracker_port:
             # print(f"Connecting to tracker at {tracker_ip}:{tracker_port}")
             self.start_connection(tracker_ip, tracker_port) # connecting to the tracker
+        else:
+            self.is_tracker = True # if we are the tracker, we need to accept connections
             
         
 
@@ -68,16 +71,25 @@ class Peer():
         """
         Starts the mining process.
         """
+        self.should_mine = True
         self.write_log("Starting mining process...\n")
         threading.Thread(target=self.mining).start()
-
+    def stop_mining(self):
+        """
+        Stops the mining process.
+        """
+        try:
+            self.should_mine = False
+            self.write_log("Stopping mining process...\n")
+        except Exception as e:
+            self.write_log(f"Error stopping mining process: {e}\n")
     def mining(self):
         """
         Mines a block.
         This will run a loop, and is responsible for cleanup of open_elections (since it is the only thing that uses it)
 
         """
-        while True:
+        while self.should_mine:
             index = 0
             prev_hash = b'\x00' * 32
             with self.data_lock:
@@ -95,7 +107,7 @@ class Peer():
             while nonce < 2**32: # max for 4 byte num
                 if nonce % 10000000 == 0:
                     self.write_log(f"Mining block {index} with nonce {nonce}")
-                    if self.biggest_chain != old_longest: # new block was recieved, need to break and start over
+                    if self.biggest_chain != old_longest or not self.should_mine: # new block was recieved, need to break and start over
                         break
                 block_header = b''.join([index.to_bytes(4, byteorder='big'), prev_hash, merkle_root, timestamp, difficulty.to_bytes(4, byteorder='big'), nonce.to_bytes(4, byteorder='big')])
                 header_hash = hashy(block_header)
@@ -255,7 +267,7 @@ class Peer():
         """
         with self.node_list_lock:
             if node in self.nodes:
-                self.nodes.remove(node)
+                del self.nodes[node]
                 self.write_log(f"Node removed: {node}\n")
             else:
                 self.write_log(f"Node not found: {node}\n")
@@ -587,7 +599,7 @@ class Peer():
         thing = None
         with self.data_lock:
             # if this is the genisis block, we need to add it to the chain
-            if len(self.chain_headers) == 0 and index == 0:
+            if index == 0:
                 found = True
             # otherwise, we need to find the parent block
             if this_hash in self.blocks:
@@ -725,7 +737,7 @@ class Peer():
         # checking if this was the parent to any orphans, if so we can process those.
         if header_hash in self.orphan_pool:
             for orphan in self.orphan_pool[header_hash]:
-                self.log(f"INF: Orphan block parent found: {orphan}\n")
+                self.write_log(f"INF: Orphan block parent found: {orphan}\n")
                 self.verify_block(orphan, block, None)
             del self.orphan_pool[header_hash]
     def send_error(self, node, message):
@@ -823,7 +835,7 @@ class Peer():
                     if hashy(vote.jsonify()) in self.all_things:
                         self.all_things[hashy(vote.jsonify())][1].new = False
                     else:
-                        self.all_things[hashy(vote.jsonify())] = vote
+                        self.all_things[hashy(vote.jsonify())] = (0, vote)
             # for every end of election in the block, we need to mark it as not new
             for key in current_block.election_ends:
                 end = current_block.election_ends[key]
@@ -913,10 +925,11 @@ class Peer():
         - typey: The type of message to send
         - message: The message to send
         """
-        
+         
         message = typey.to_bytes(2, byteorder='big') + message
         message = len(message).to_bytes(2, byteorder='big') + message
         with self.send_lock:
+            del_list = []
             for addr, node in self.nodes.items():
                 # Check if the node is not the sender
                 if node != sender:
@@ -924,8 +937,10 @@ class Peer():
                         # print("Sending message to node:", node.address)
                         node.connection.send(message)
                     except Exception as e:
-                        self.write_log(f"X Failed to send message to {node}: {e}\n")
-                        self.remove_node(node)
+                        self.write_log(f"X Failed to send message to {node}: {e}, removing\n")
+                        del_list.append(addr)
+            for addr in del_list:
+                self.remove_node(addr)
 
 
     def verify_node_connection(self, initial_message):
@@ -972,7 +987,7 @@ class Peer():
             average_frequency = sum(time_differences) / len(time_differences)
             average_difficulty = sum(difficulties[:-1]) / len(difficulties[:-1]) # we need one extra timestamp to get all the times, so we trim off the corosponding difficulty
             # Calculate the new difficulty, targeting block every 30 seconds, assume that time to mine scales with 1/difficulty
-            difficulty = int(average_difficulty * (30/average_frequency))
+            difficulty = int(average_difficulty * (TIME_TARGET/average_frequency))
             if difficulty < 1:
                 difficulty = 1
             elif difficulty > 2**32 - 1:

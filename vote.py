@@ -64,7 +64,7 @@ class Vote:
         """
         # Prepare the message to sign
         message = (election_hash + choice.encode('utf-8'))
-        print(f"VOTE Message to sign: {message}")
+        # print(f"VOTE Message to sign: {message}")
         
         # Sign the message
         signature = private_key.sign(
@@ -85,14 +85,14 @@ class Vote:
         try:
             # Prepare the message that was signed
             message = (self.election_hash + self.choice.encode('utf-8'))
-            print(f"VOTE Message to verify: {message}")
+            # print(f"VOTE Message to verify: {message}")
             # Load the public key (assume PEM format)
             public_key = serialization.load_der_public_key(base64.b64decode(self.public_key))
-            print("CURVE:", self.public_key)
+            # print("CURVE:", self.public_key)
             # Decode the signature 
             signature_bytes = base64.b64decode(self.signature)
             # Verify the signature
-            print("checking")
+            # print("checking")
             public_key.verify(
                 signature_bytes,
                 message,

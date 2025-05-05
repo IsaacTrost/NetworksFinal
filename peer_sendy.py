@@ -35,7 +35,7 @@ def setUp():
     print(private_keys, public_keys)
     election_name = "test_election"
     election_choices = ["A", "B", "C"]
-    election_end_time = int(time.time()) + 30  # 1 minute from now
+    election_end_time = int(time.time()) + 25  # 1 minute from now
     
     election_data = {
         "name": election_name,
@@ -90,6 +90,7 @@ def main():
     vote3 = create_vote(ele, 2, "B")
     peer.send_vote(vote1)
     peer.send_vote(vote2)
+    peer.send_vote(vote3)
     time.sleep(10)
     res = peer.request_election(ele.hashy)
     print("RESULTS:", res)

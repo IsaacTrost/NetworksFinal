@@ -11,7 +11,7 @@ from cryptography.exceptions import InvalidSignature
 import base64
 
 MAX_CONNECTIONS = 50
-DEFAULT_DIFFICULTY = 128 
+DEFAULT_DIFFICULTY = 64
 INIT = 1
 VOTE = 2
 BLOCK = 3
@@ -26,7 +26,8 @@ MAX_BLOCK_SIZE = 1024 * 1024
 TARGET = 2**32
 MAX_LEVELS = 8
 START_ZEROS = 2
-CLAMP = 1.2
+CLAMP = 1.3
+TIME_TARGET = 5 # seconds
 def hashy(data):
     """
     Hashes the data using SHA-256.
