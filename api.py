@@ -1,7 +1,12 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from light_node import LightNode
+from peer_light import LightNode
+from election import Election
 import time
+import threading
+from vote import Vote
+import base64
+import json
 
 # Need changes to match tracker set up 
 TRACKER_IP = "127.0.0.1"
@@ -15,6 +20,14 @@ CORS(app)
 # Initialize a LightNode
 node = LightNode(name=NODE_NAME, port=NODE_PORT, tracker_ip=TRACKER_IP, tracker_port=TRACKER_PORT)
 
+def refresh_node_periodically():
+    while True:
+        node.refreash_elections()
+        time.sleep(2)
+
+refresh_thread = threading.Thread(target=refresh_node_periodically, daemon=True)
+refresh_thread.start()
+
 @app.route('/api/node-info', methods=['GET'])
 def get_node_info():
     return jsonify({
@@ -26,15 +39,14 @@ def get_node_info():
 @app.route('/api/elections', methods=['GET'])
 def get_elections():
     elections = []
-    for block in node.blocks.values():
-        for election_hash, election in block.elections.items():
+    with node.data_lock:
+        for election in node.active_elections:
             elections.append({
                 "name": election.name,
                 "choices": election.choices,
-                "hash": election_hash.hex(),
+                "hash": base64.b64encode(election.hashy).decode(),
                 "total_votes": election.total_votes,
                 "end_time": election.end_time,
-                "winner": election.winner
             })
     return jsonify(elections)
 
@@ -42,38 +54,70 @@ def get_elections():
 def submit_vote():
     data = request.get_json()
     try:
+        private_key = base64.b64decode(data["private_key"])
+        election_id = base64.b64decode(data["election_id"])
+        candidate_id = base64.b64decode(data["candidate_id"])
+        sig = Vote.sign(private_key, election_id, candidate_id)
         vote_data = {
-            "election_name": data["election_id"],
+            "election_hash": data["election_id"],
             "choice": data["candidate_id"],
-            "public_key": "placeholder",  # Replace with actual if signing is done server-side
-            "signature": "placeholder"   # Replace with actual if signing is done server-side
+            "public_key": data["public_key"],  # Replace with actual if signing is done server-side
+            "signature": sig   # Replace with actual if signing is done server-side
         }
-        vote_json = str(vote_data).replace("'", '"')
-        node.handle_vote(vote_json.encode(), node)
+        vote = Vote(vote_data)
+        node.handle_vote(vote, None)
         return jsonify({"message": "Vote broadcasted."})
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
 @app.route('/api/results', methods=['GET'])
 def get_results():
-    try:
-        election_results = {}
-        for block in node.blocks.values():
-            for election_hash, election in block.elections.items():
-                candidate_tally = {}
-                for vote in election.votes:
-                    choice = vote.get("choice")
-                    if choice:
-                        candidate_tally[choice] = candidate_tally.get(choice, 0) + 1
+    hashy = request.get_json().get("election_hash")
+    if not hashy:
+        return jsonify({"error": "Election hash is required."}), 400
+    hashy = base64.b64decode(hashy)
+    election = node.request_election(hashy)
+    if not type(election) == Election:
+        return jsonify({"error": "Election not found."}), 404
+    per_candidate = {}
+    for choice in election.choices:
+        per_candidate[choice] = 0
+    for vote in election.used_keys.values():
+        choice = vote
+        if choice in election.choices:
+            per_candidate[choice] += 1
+        else:
+            return jsonify({"error": "Election choices are not lining up"}), 400
 
-                election_results[election.name] = {
-                    "winner": election.winner,
-                    "total_votes": election.total_votes,
-                    "per_candidate": candidate_tally
-                }
-        return jsonify(election_results)
+
+    election_results = {
+        "name": election.name,
+        "choices": election.choices,
+        "total_votes": election.total_votes,
+        "end_time": election.end_time,
+        "winner": election.winner,
+        "per_candidate": {}
+    }
+    return jsonify(election_results)
+@app.route('/api/election', methods=['POST'])
+def create_election():
+    data = request.get_json()
+    try:
+        name = data["name"]
+        choices = data["choices"]
+        public_keys = data["public_keys"]
+        end_time = data["end_time"]
+        election_data = {
+            "name": name,
+            "choices": choices,
+            "public_keys": public_keys,
+            "end_time": end_time
+        }
+        election = Election(election_data)
+        node.send_election(election)
+        return jsonify({"message": "Election broadcasted."})
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({"error": str(e)}), 400
 
 if __name__ == '__main__':
     NODE_PORT = 6000

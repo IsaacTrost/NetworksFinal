@@ -10,6 +10,7 @@ from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.exceptions import InvalidSignature
 import base64
 
+
 MAX_CONNECTIONS = 50
 DEFAULT_DIFFICULTY = 64
 INIT = 1
@@ -22,6 +23,8 @@ GET_BLOCK = 7
 GET_ELECTION_RES = 8
 ELECTION_RES = 9
 ERROR_RESPONSE = 10
+ACTIVE_ELECTIONS = 11
+GET_ACTIVE_ELECTIONS = 12
 MAX_BLOCK_SIZE = 1024 * 1024
 TARGET = 2**32
 MAX_LEVELS = 8

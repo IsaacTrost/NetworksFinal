@@ -13,6 +13,9 @@ import base64
 from end_of_election import EndOfElection
 from random import shuffle
 
+PING = 10
+PONG = 11
+
 class Peer():
     def __init__(self, name, port, tracker_ip = None, tracker_port = None):
         """
@@ -56,7 +59,7 @@ class Peer():
         else:
             self.is_tracker = True # if we are the tracker, we need to accept connections
             
-        
+        threading.Thread(target=self.ping_loop, daemon=True).start()
 
     def write_log(self, message):
         """
@@ -363,7 +366,19 @@ class Peer():
         """
         try:
             typey = int.from_bytes(message[:2], byteorder='big')
-            if typey == BLOCK:
+            #if typey == BLOCK:
+
+            # Reset lastSeen counter whenever we get any message
+            node.lastSeen = 0
+            
+            if typey == PING:
+                # Reply with pong
+                pong_message = PONG.to_bytes(2, byteorder='big')
+                self.send_message(pong_message, node)
+            elif typey == PONG:
+                # Do nothing, lastSeen already reset
+                pass
+            elif typey == BLOCK:
                 self.handle_block(message[2:], node)
             elif typey == VOTE:
                 self.handle_vote(message[2:], node)
@@ -388,6 +403,10 @@ class Peer():
             elif typey == ERROR_RESPONSE:
                 print(f"Error response received: {message[2:].decode('utf-8')}")
                 return
+            elif typey == GET_ACTIVE_ELECTIONS:
+                self.get_active_election(node)
+            elif typey == ACTIVE_ELECTIONS:
+                self.handle_active_elections(message[2:], node)
             else:
                 self.write_log(f"Unknown message type: {message[:2]}\n")
         # checks so I dont have to put these in every one (i still do sometimes though)
@@ -396,6 +415,29 @@ class Peer():
         except KeyError as e:
             self.write_log(f"Malformed message: {e}\n")
     
+    def get_active_election(self, node):
+        """
+        Handles get active election messages from nodes. This will return the list of active elections to the node.
+        args:
+        - node: The node that sent the message
+        """
+        with self.data_lock:
+            result = []
+            for key in self.open_elections:
+                result.append(self.open_elections[key].jsonify())
+            # smashing results together so its one big binary string
+            result = {"elections": result}
+            # send the result back to the node
+            self.send_message(ACTIVE_ELECTIONS.to_bytes(2, byteorder='big') + json.dumps(result).encode('utf-8'), node)
+            self.write_log(f"Active elections sent to node {node}\n")
+    
+    def handle_active_elections(self, message, node):
+        """
+        Handles active election messages from nodes. This will update the list of active elections with the data from the node.
+        Only the light nodes need to deal with this, as they are the ones that will be sending this message.
+        """
+        pass
+
     def get_block(self, message, node):
         """
         Handles get block messages from nodes.
@@ -1170,5 +1212,22 @@ class Peer():
         # Send the election data to the node
         self.send_message(ELECTION_RES.to_bytes(2, byteorder='big') + election_hash + json.dumps(election_dict).encode('utf-8'), node)
         return election_dict
+    
+    def ping_loop(self):
+        """
+        Simple periodic ping to all nodes
+        """
+        while True:
+            time.sleep(60)  # Ping once per minute
             
+            with self.node_list_lock:
+                for addr, node in list(self.nodes.items()):
+                    try:
+                        # Send ping
+                        ping_message = PING.to_bytes(2, byteorder='big')
+                        self.send_message(ping_message, node)
+                    except Exception as e:
+                        # Remove failed nodes
+                        self.write_log(f"Ping failed for {addr}: {e}\n")
+                        self.remove_node(addr)
             

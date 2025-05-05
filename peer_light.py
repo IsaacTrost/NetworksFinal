@@ -278,11 +278,30 @@ class LightNode(Peer):
                 self.election_reses[election_hash] = []
             self.election_reses[election_hash].append(message[32:])
             self.write_log(f"Got election result for {election_hash}, waiting for more")
+    
+
+    def get_active_election(self, node):
+        """throw an error, we are a light node"""
+        self.write_log("X Error: Light node does not support active elections")
+        node.send_error("Light node does not support active elections", node)
+
+    def handle_active_elections(self, message, node):
+        with self.data_lock:
+            json_data = json.loads(message)
+            self.active_elections = []
+            for item in json_data["elections"]:
+                self.active_elections.append(Election(item))
+    
+    def refreash_elections(self):
+        """Trues to refreash the active elections by requesting them from node [0]"""
+        self.nodes[0].send_message(GET_ACTIVE_ELECTIONS.to_bytes(2, byteorder='big'), self.nodes[0])
+        # This is more of a convience method, so we just trust that this will be OK
+        
 
     
 
     
-    
+
 
         
 if __name__ == "__main__":
